@@ -123,6 +123,11 @@
 		char* nombres[100]; 
 		int longitud;  
 	}  listadoIds;
+	typedef struct ResultadosArit{ 
+		char tipo;
+		int resultado;  
+	}  ResultadosArit;
+
 }
 
 %union{
@@ -131,6 +136,7 @@
 	int entero;
 	NombreDeTipoT tipo;
 	listadoIds paraListaId;
+	ResultadosArit resultA;
 }
 
  //PARTE 2.4: Asignacion de traducciones a las variables
@@ -138,6 +144,7 @@
 %type <entero> lista_d_cte  //para contar las que se definen
 %type <paraListaId> lista_id
 %type <tipo> d_tipo
+%type <resultA> exp_a
 %%
 
 desc_algoritmo: 
@@ -341,9 +348,23 @@ expresion:
 	;
 exp_a:
 	exp_a operadoresSumaORestaTK exp_a {
+		$$.tipo=$2;
+		if($$.tipo == '+')
+		{
+			$$.resultado=$1 + $3;
+		}else{
+			$$.resultado=$1 - $3;
+		}
 
 		}
 	| exp_a operadoresMultiplicacionODivisionTK exp_a {
+		$$.tipo=$2;
+		if($$.tipo == '*')
+		{
+			$$.resultado=$1 * $3;
+		}else{
+			$$.resultado=$1 / $3;
+		}
 
 		}
 	| parentesisAperturaTK exp_a parentesisCierreTK {
