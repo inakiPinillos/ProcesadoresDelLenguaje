@@ -13,6 +13,10 @@ extern infoVariable tablaDeSimbolos[];
 extern int pos; 
 
 void agregarVariable(char *, NombreDeTipoT);
+infoVariable agregarTemporal();
+void actualizarTipoTemporal(infoVariable, NombreDeTipoT);
+NombreDeTipoT obtenerTipo(char *);
+int obtenerPos(char *);
 void imprimirTabla();
 
 #endif

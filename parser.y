@@ -17,6 +17,7 @@
 	#include "literal.h"
 	#include "tablaDeConstantes.h"
 	#include "tablaDeSimbolos.h"
+	#include "tablaDeCuadruplas.h"
 	int yylex(); // Usamos la funcion que se crea gracias a flex
 	void yyerror(char *); // Prototipo de una funcion necesaria
 	extern FILE* yyin; // Usamos la varible de Flex en la que viene la entrada
@@ -25,9 +26,13 @@
 
 	#define MAX_CONSTANTES 100
 	#define MAX_IDS 100
+	#define MAX_CUADRUPLAS 1000
 
 	int pos = 0; 
 	infoVariable tablaDeSimbolos[MAX_IDS]; 
+
+	int posCuadruplas = 0; 
+	cuadrupla tablaDeCuadruplas[MAX_CUADRUPLAS]; 
 
 %}
 
@@ -119,24 +124,22 @@
 
  //PARTE 2.3: Creamos el union necesario para valores de flex y traducciones de bison
 %code requires {
+	#include "tablaDeCuadruplas.h"
 	typedef struct listadoIds{ 
 		char* nombres[100]; 
 		int longitud;  
 	}  listadoIds;
-	typedef struct ResultadosArit{ 
-		char tipo;
-		int resultado;  
-	}  ResultadosArit;
-
+	
 }
 
 %union{
 	char* cadena;
+	char operador;
 	LiteralT literal;
 	int entero;
 	NombreDeTipoT tipo;
 	listadoIds paraListaId;
-	ResultadosArit resultA;
+	tipoOperando paraOperando;
 }
 
  //PARTE 2.4: Asignacion de traducciones a las variables
@@ -144,7 +147,8 @@
 %type <entero> lista_d_cte  //para contar las que se definen
 %type <paraListaId> lista_id
 %type <tipo> d_tipo
-%type <resultA> exp_a
+%type <paraOperando> operando
+%type <paraOperando> exp_a
 %%
 
 desc_algoritmo: 
@@ -348,30 +352,26 @@ expresion:
 	;
 exp_a:
 	exp_a operadoresSumaORestaTK exp_a {
-		$$.tipo=$2;
-		if($$.tipo == '+')
+		infoVariable T = agregarTemporal();
+		$$.place = obtenerPos(T.nombre);
+		if($2 == '+')
 		{
-			$$.resultado=$1 + $3;
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				gen($1, $3, SUMA_ENTERO, T);
+				$$.type = ENTERO;
+			}
 		}else{
-			$$.resultado=$1 - $3;
 		}
 
 		}
 	| exp_a operadoresMultiplicacionODivisionTK exp_a {
-		$$.tipo=$2;
-		if($$.tipo == '*')
-		{
-			$$.resultado=$1 * $3;
-		}else{
-			$$.resultado=$1 / $3;
-		}
-
 		}
 	| parentesisAperturaTK exp_a parentesisCierreTK {
 
 		}
 	| operando {
-
+			$$ = $1;
 		}
 	| literalRealTK {
 
@@ -406,7 +406,8 @@ exp_b:
 
 operando:
 	identificadorTK {
-
+			$$.place = obtenerPos($1);
+			$$.type = obtenerTipo($1);
 		}
 	| operando puntoTK operando {
 
@@ -556,6 +557,7 @@ int main(int argc, char **argv){
 	yyparse();
 	imprimeTablaDeConstantes(tc);
 	imprimirTabla();
+	imprimirTablaCuadruplas();
 }
 
 

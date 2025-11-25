@@ -6,7 +6,7 @@ algoritmo intercambio;
 		aux, aux1, aux2: entero;	
 		aux3, aux3, aux4, aux5: real;
 	fvar;
-	aux:= a;
+	aux:= a + c;
 	a:= c;
 	c:= aux
 {Post: c=A AND a = B}

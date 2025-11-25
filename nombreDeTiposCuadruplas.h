@@ -1,0 +1,17 @@
+#ifndef FFF_NOMBRESDETIPOSCUADRUPLAS_H
+#define FFF_NOMBRESDETIPOSCUADRUPLAS_H
+
+typedef enum nombreDeOperador {
+	SUMA_ENTERO,
+	SUMA_REAL,
+	RESTA_ENTERO,
+	RESTA_REAL,
+	MULT_ENTERO,
+    MULT_REAL,
+    DIV_ENTERO,
+    DIV_REAL,
+    ENTERO_TO_REAL,
+    REAL_TO_ENTERO
+} NombreDeOperador;
+
+#endif

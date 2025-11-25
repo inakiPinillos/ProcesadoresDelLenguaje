@@ -1,0 +1,2908 @@
+Terminals unused in grammar
+
+    literalTK
+    comentarioTK
+
+
+State 88 conflicts: 1 shift/reduce
+State 126 conflicts: 1 reduce/reduce
+State 176 conflicts: 1 reduce/reduce
+
+
+Grammar
+
+    0 $accept: desc_algoritmo $end
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK
+
+    2 cabecera_alg: decl_globales decl_a_f decl_ent_sal precondicionTK
+
+    3 bloque_alg: bloque postCondicionTK
+
+    4 decl_globales: declaracion_tipo decl_globales
+    5              | declaracion_const decl_globales
+    6              | ε
+
+    7 decl_a_f: accion_d decl_a_f
+    8         | funcion_d decl_a_f
+    9         | ε
+
+   10 bloque: declaraciones instrucciones
+
+   11 declaraciones: declaracion_tipo declaraciones
+   12              | declaracion_const declaraciones
+   13              | declaracion_var declaraciones
+   14              | ε
+
+   15 declaracion_tipo: tipoTK lista_d_tipo finTipoTK puntoYComaTK
+
+   16 declaracion_const: constTK lista_d_cte finConstTK puntoYComaTK
+
+   17 declaracion_var: varTK lista_d_var finVarTK puntoYComaTK
+
+   18 lista_d_tipo: identificadorTK signoIgualTK d_tipo puntoYComaTK lista_d_tipo
+   19             | ε
+
+   20 d_tipo: tuplaTK lista_campos finTuplaTK
+   21       | tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo
+   22       | identificadorTK
+   23       | expresion_t subrangoTK expresion_t
+   24       | refTK d_tipo
+   25       | enteroTK
+   26       | booleanoTK
+   27       | realTK
+   28       | cadenaTK
+   29       | caracterTK
+
+   30 expresion_t: expresion
+   31            | literalCaracterTK
+
+   32 lista_campos: identificadorTK definicionTipoVariableTK d_tipo puntoYComaTK lista_campos
+   33             | ε
+
+   34 lista_d_cte: nombreConstanteTK signoIgualTK literalCaracterTK puntoYComaTK lista_d_cte
+   35            | nombreConstanteTK signoIgualTK literalCadenaTK puntoYComaTK lista_d_cte
+   36            | nombreConstanteTK signoIgualTK literalEnteroTK puntoYComaTK lista_d_cte
+   37            | nombreConstanteTK signoIgualTK literalRealTK puntoYComaTK lista_d_cte
+   38            | nombreConstanteTK signoIgualTK literalBooleanoTK puntoYComaTK lista_d_cte
+   39            | ε
+
+   40 lista_d_var: lista_id definicionTipoVariableTK d_tipo puntoYComaTK lista_d_var
+   41            | ε
+
+   42 lista_id: identificadorTK separadorTK lista_id
+   43         | identificadorTK
+
+   44 decl_ent_sal: decl_ent
+   45             | decl_ent decl_sal
+   46             | decl_sal
+
+   47 decl_ent: entradaTK lista_d_var
+
+   48 decl_sal: salidaTK lista_d_var
+
+   49 expresion: exp_a
+   50          | exp_b
+   51          | funcion_ll
+
+   52 exp_a: exp_a operadoresSumaORestaTK exp_a
+   53      | exp_a operadoresMultiplicacionODivisionTK exp_a
+   54      | parentesisAperturaTK exp_a parentesisCierreTK
+   55      | operando
+   56      | literalRealTK
+   57      | literalEnteroTK
+   58      | operadoresSumaORestaTK exp_a
+
+   59 exp_b: exp_b operadoresBooleanosTK exp_b
+   60      | noTK exp_b
+   61      | operando_b
+   62      | literalBooleanoTK
+   63      | expresion operadoresComparacionTK expresion
+   64      | parentesisAperturaTK exp_b parentesisCierreTK
+
+   65 operando: identificadorTK
+   66         | operando puntoTK operando
+   67         | operando inicioArrayTK expresion finalArrayTK
+   68         | operando refTK
+
+   69 operando_b: identificadorBooleanoTK
+
+   70 instrucciones: instruccion puntoYComaTK instrucciones
+   71              | instruccion
+
+   72 instruccion: continuarTK
+   73            | asignacion
+   74            | alternativa
+   75            | iteracion
+   76            | accion_ll
+
+   77 asignacion: operando igualAsignacionTK expresion
+
+   78 alternativa: siTK expresion entoncesTK instrucciones lista_opciones finSiTK
+
+   79 lista_opciones: siNoSiTK expresion entoncesTK instrucciones lista_opciones
+   80               | ε
+
+   81 iteracion: it_cota_fija
+   82          | it_cota_exp
+
+   83 it_cota_exp: mientrasTK expresion hacerTK instrucciones finMientrasTK
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones finParaTK
+
+   85 accion_d: accionTK a_cabecera bloque finAccionTK
+
+   86 funcion_d: funcionTK f_cabecera bloque devuelveTK expresion finFuncionTK
+
+   87 a_cabecera: identificadorTK parentesisAperturaTK d_par_form parentesisCierreTK puntoYComaTK
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK d_tipo puntoYComaTK
+
+   89 d_par_form: d_p_form puntoYComaTK d_par_form
+   90           | ε
+
+   91 d_p_form: entradaTK lista_id definicionTipoVariableTK d_tipo
+   92         | salidaTK lista_id definicionTipoVariableTK d_tipo
+   93         | entradaSalidaTK lista_id definicionTipoVariableTK d_tipo
+
+   94 accion_ll: identificadorTK parentesisAperturaTK l_ll parentesisCierreTK
+
+   95 funcion_ll: identificadorTK parentesisAperturaTK l_ll parentesisCierreTK
+
+   96 l_ll: expresion separadorTK l_ll
+   97     | expresion
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    cadenaTK (258) 28
+    caracterTK (259) 29
+    booleanoTK (260) 26
+    realTK (261) 27
+    enteroTK (262) 25
+    accionTK (263) 85
+    algoritmoTK (264) 1
+    funcionTK (265) 86
+    tipoTK (266) 15
+    varTK (267) 17
+    tuplaTK (268) 20
+    constTK (269) 16
+    refTK (270) 24 68
+    tablaTK (271) 21
+    deTK (272) 21
+    finAccionTK (273) 85
+    finAlgoritmoTK (274) 1
+    finFuncionTK (275) 86
+    finTipoTK (276) 15
+    finVarTK (277) 17
+    finTuplaTK (278) 20
+    finConstTK (279) 16
+    mientrasTK (280) 83
+    siTK (281) 78
+    paraTK (282) 84
+    hacerTK (283) 83 84
+    hastaTK (284) 84
+    continuarTK (285) 72
+    finMientrasTK (286) 83
+    finSiTK (287) 78
+    finParaTK (288) 84
+    entradaTK (289) 47 91
+    entradaSalidaTK (290) 93
+    salidaTK (291) 48 92
+    devuelveTK (292) 86 88
+    operadoresMultiplicacionODivisionTK <operador> (293) 53
+    noTK (294) 60
+    operadoresBooleanosTK <operador> (295) 59
+    operadoresSumaORestaTK <operador> (296) 52 58
+    parentesisAperturaTK (297) 54 64 87 88 94 95
+    parentesisCierreTK (298) 54 64 87 88 94 95
+    operadoresComparacionTK <operador> (299) 63
+    signoIgualTK (300) 18 34 35 36 37 38
+    igualAsignacionTK (301) 77 84
+    puntoYComaTK (302) 1 15 16 17 18 32 34 35 36 37 38 40 70 87 88 89
+    separadorTK (303) 42 96
+    subrangoTK (304) 21 23
+    definicionTipoVariableTK (305) 32 40 91 92 93
+    entoncesTK (306) 78 79
+    siNoSiTK (307) 79
+    literalTK (308)
+    inicioArrayTK (309) 21 67
+    finalArrayTK (310) 21 67
+    literalBooleanoTK <valor> (311) 38 62
+    literalCadenaTK <cadena> (312) 35
+    identificadorTK <cadena> (313) 1 18 22 32 42 43 65 84 87 88 94 95
+    literalCaracterTK <caracter> (314) 31 34
+    literalEnteroTK <entero> (315) 36 57
+    precondicionTK <precondicon> (316) 2
+    postCondicionTK <postcondicion> (317) 3
+    comentarioTK (318)
+    literalRealTK <real> (319) 37 56
+    nombreConstanteTK <constante> (320) 34 35 36 37 38
+    identificadorBooleanoTK <cadena> (321) 69
+    puntoTK (322) 1 66
+    UPLUSMINUS (323)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (69)
+        on left: 0
+    desc_algoritmo (70)
+        on left: 1
+        on right: 0
+    cabecera_alg (71)
+        on left: 2
+        on right: 1
+    bloque_alg (72)
+        on left: 3
+        on right: 1
+    decl_globales (73)
+        on left: 4 5 6
+        on right: 2 4 5
+    decl_a_f (74)
+        on left: 7 8 9
+        on right: 2 7 8
+    bloque (75)
+        on left: 10
+        on right: 3 85 86
+    declaraciones (76)
+        on left: 11 12 13 14
+        on right: 10 11 12 13
+    declaracion_tipo (77)
+        on left: 15
+        on right: 4 11
+    declaracion_const (78)
+        on left: 16
+        on right: 5 12
+    declaracion_var (79)
+        on left: 17
+        on right: 13
+    lista_d_tipo (80)
+        on left: 18 19
+        on right: 15 18
+    d_tipo <tipo> (81)
+        on left: 20 21 22 23 24 25 26 27 28 29
+        on right: 18 21 24 32 40 88 91 92 93
+    expresion_t (82)
+        on left: 30 31
+        on right: 21 23
+    lista_campos (83)
+        on left: 32 33
+        on right: 20 32
+    lista_d_cte <entero> (84)
+        on left: 34 35 36 37 38 39
+        on right: 16 34 35 36 37 38
+    lista_d_var (85)
+        on left: 40 41
+        on right: 17 40 47 48 88
+    lista_id <paraListaId> (86)
+        on left: 42 43
+        on right: 40 42 91 92 93
+    decl_ent_sal (87)
+        on left: 44 45 46
+        on right: 2
+    decl_ent (88)
+        on left: 47
+        on right: 44 45
+    decl_sal (89)
+        on left: 48
+        on right: 45 46
+    expresion (90)
+        on left: 49 50 51
+        on right: 30 63 67 77 78 79 83 84 86 96 97
+    exp_a <paraOperando> (91)
+        on left: 52 53 54 55 56 57 58
+        on right: 49 52 53 54 58
+    exp_b (92)
+        on left: 59 60 61 62 63 64
+        on right: 50 59 60 64
+    operando <paraOperando> (93)
+        on left: 65 66 67 68
+        on right: 55 66 67 68 77
+    operando_b (94)
+        on left: 69
+        on right: 61
+    instrucciones (95)
+        on left: 70 71
+        on right: 10 70 78 79 83 84
+    instruccion (96)
+        on left: 72 73 74 75 76
+        on right: 70 71
+    asignacion (97)
+        on left: 77
+        on right: 73
+    alternativa (98)
+        on left: 78
+        on right: 74
+    lista_opciones (99)
+        on left: 79 80
+        on right: 78 79
+    iteracion (100)
+        on left: 81 82
+        on right: 75
+    it_cota_exp (101)
+        on left: 83
+        on right: 82
+    it_cota_fija (102)
+        on left: 84
+        on right: 81
+    accion_d (103)
+        on left: 85
+        on right: 7
+    funcion_d (104)
+        on left: 86
+        on right: 8
+    a_cabecera (105)
+        on left: 87
+        on right: 85
+    f_cabecera (106)
+        on left: 88
+        on right: 86
+    d_par_form (107)
+        on left: 89 90
+        on right: 87 89
+    d_p_form (108)
+        on left: 91 92 93
+        on right: 89
+    accion_ll (109)
+        on left: 94
+        on right: 76
+    funcion_ll (110)
+        on left: 95
+        on right: 51
+    l_ll (111)
+        on left: 96 97
+        on right: 94 95 96
+
+
+State 0
+
+    0 $accept: • desc_algoritmo $end
+
+    algoritmoTK  shift, and go to state 1
+
+    desc_algoritmo  go to state 2
+
+
+State 1
+
+    1 desc_algoritmo: algoritmoTK • identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK
+
+    identificadorTK  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: desc_algoritmo • $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 desc_algoritmo: algoritmoTK identificadorTK • puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK
+
+    puntoYComaTK  shift, and go to state 5
+
+
+State 4
+
+    0 $accept: desc_algoritmo $end •
+
+    $default  accept
+
+
+State 5
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK • cabecera_alg bloque_alg finAlgoritmoTK puntoTK
+
+    tipoTK   shift, and go to state 6
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 6 (decl_globales)
+
+    cabecera_alg       go to state 8
+    decl_globales      go to state 9
+    declaracion_tipo   go to state 10
+    declaracion_const  go to state 11
+
+
+State 6
+
+   15 declaracion_tipo: tipoTK • lista_d_tipo finTipoTK puntoYComaTK
+
+    identificadorTK  shift, and go to state 12
+
+    $default  reduce using rule 19 (lista_d_tipo)
+
+    lista_d_tipo  go to state 13
+
+
+State 7
+
+   16 declaracion_const: constTK • lista_d_cte finConstTK puntoYComaTK
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 15
+
+
+State 8
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg • bloque_alg finAlgoritmoTK puntoTK
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    bloque_alg         go to state 17
+    bloque             go to state 18
+    declaraciones      go to state 19
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 9
+
+    2 cabecera_alg: decl_globales • decl_a_f decl_ent_sal precondicionTK
+
+    accionTK   shift, and go to state 23
+    funcionTK  shift, and go to state 24
+
+    $default  reduce using rule 9 (decl_a_f)
+
+    decl_a_f   go to state 25
+    accion_d   go to state 26
+    funcion_d  go to state 27
+
+
+State 10
+
+    4 decl_globales: declaracion_tipo • decl_globales
+
+    tipoTK   shift, and go to state 6
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 6 (decl_globales)
+
+    decl_globales      go to state 28
+    declaracion_tipo   go to state 10
+    declaracion_const  go to state 11
+
+
+State 11
+
+    5 decl_globales: declaracion_const • decl_globales
+
+    tipoTK   shift, and go to state 6
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 6 (decl_globales)
+
+    decl_globales      go to state 29
+    declaracion_tipo   go to state 10
+    declaracion_const  go to state 11
+
+
+State 12
+
+   18 lista_d_tipo: identificadorTK • signoIgualTK d_tipo puntoYComaTK lista_d_tipo
+
+    signoIgualTK  shift, and go to state 30
+
+
+State 13
+
+   15 declaracion_tipo: tipoTK lista_d_tipo • finTipoTK puntoYComaTK
+
+    finTipoTK  shift, and go to state 31
+
+
+State 14
+
+   34 lista_d_cte: nombreConstanteTK • signoIgualTK literalCaracterTK puntoYComaTK lista_d_cte
+   35            | nombreConstanteTK • signoIgualTK literalCadenaTK puntoYComaTK lista_d_cte
+   36            | nombreConstanteTK • signoIgualTK literalEnteroTK puntoYComaTK lista_d_cte
+   37            | nombreConstanteTK • signoIgualTK literalRealTK puntoYComaTK lista_d_cte
+   38            | nombreConstanteTK • signoIgualTK literalBooleanoTK puntoYComaTK lista_d_cte
+
+    signoIgualTK  shift, and go to state 32
+
+
+State 15
+
+   16 declaracion_const: constTK lista_d_cte • finConstTK puntoYComaTK
+
+    finConstTK  shift, and go to state 33
+
+
+State 16
+
+   17 declaracion_var: varTK • lista_d_var finVarTK puntoYComaTK
+
+    identificadorTK  shift, and go to state 34
+
+    $default  reduce using rule 41 (lista_d_var)
+
+    lista_d_var  go to state 35
+    lista_id     go to state 36
+
+
+State 17
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg • finAlgoritmoTK puntoTK
+
+    finAlgoritmoTK  shift, and go to state 37
+
+
+State 18
+
+    3 bloque_alg: bloque • postCondicionTK
+
+    postCondicionTK  shift, and go to state 38
+
+
+State 19
+
+   10 bloque: declaraciones • instrucciones
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 45
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 20
+
+   11 declaraciones: declaracion_tipo • declaraciones
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    declaraciones      go to state 53
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 21
+
+   12 declaraciones: declaracion_const • declaraciones
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    declaraciones      go to state 54
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 22
+
+   13 declaraciones: declaracion_var • declaraciones
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    declaraciones      go to state 55
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 23
+
+   85 accion_d: accionTK • a_cabecera bloque finAccionTK
+
+    identificadorTK  shift, and go to state 56
+
+    a_cabecera  go to state 57
+
+
+State 24
+
+   86 funcion_d: funcionTK • f_cabecera bloque devuelveTK expresion finFuncionTK
+
+    identificadorTK  shift, and go to state 58
+
+    f_cabecera  go to state 59
+
+
+State 25
+
+    2 cabecera_alg: decl_globales decl_a_f • decl_ent_sal precondicionTK
+
+    entradaTK  shift, and go to state 60
+    salidaTK   shift, and go to state 61
+
+    decl_ent_sal  go to state 62
+    decl_ent      go to state 63
+    decl_sal      go to state 64
+
+
+State 26
+
+    7 decl_a_f: accion_d • decl_a_f
+
+    accionTK   shift, and go to state 23
+    funcionTK  shift, and go to state 24
+
+    $default  reduce using rule 9 (decl_a_f)
+
+    decl_a_f   go to state 65
+    accion_d   go to state 26
+    funcion_d  go to state 27
+
+
+State 27
+
+    8 decl_a_f: funcion_d • decl_a_f
+
+    accionTK   shift, and go to state 23
+    funcionTK  shift, and go to state 24
+
+    $default  reduce using rule 9 (decl_a_f)
+
+    decl_a_f   go to state 66
+    accion_d   go to state 26
+    funcion_d  go to state 27
+
+
+State 28
+
+    4 decl_globales: declaracion_tipo decl_globales •
+
+    $default  reduce using rule 4 (decl_globales)
+
+
+State 29
+
+    5 decl_globales: declaracion_const decl_globales •
+
+    $default  reduce using rule 5 (decl_globales)
+
+
+State 30
+
+   18 lista_d_tipo: identificadorTK signoIgualTK • d_tipo puntoYComaTK lista_d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 84
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 31
+
+   15 declaracion_tipo: tipoTK lista_d_tipo finTipoTK • puntoYComaTK
+
+    puntoYComaTK  shift, and go to state 92
+
+
+State 32
+
+   34 lista_d_cte: nombreConstanteTK signoIgualTK • literalCaracterTK puntoYComaTK lista_d_cte
+   35            | nombreConstanteTK signoIgualTK • literalCadenaTK puntoYComaTK lista_d_cte
+   36            | nombreConstanteTK signoIgualTK • literalEnteroTK puntoYComaTK lista_d_cte
+   37            | nombreConstanteTK signoIgualTK • literalRealTK puntoYComaTK lista_d_cte
+   38            | nombreConstanteTK signoIgualTK • literalBooleanoTK puntoYComaTK lista_d_cte
+
+    literalBooleanoTK  shift, and go to state 93
+    literalCadenaTK    shift, and go to state 94
+    literalCaracterTK  shift, and go to state 95
+    literalEnteroTK    shift, and go to state 96
+    literalRealTK      shift, and go to state 97
+
+
+State 33
+
+   16 declaracion_const: constTK lista_d_cte finConstTK • puntoYComaTK
+
+    puntoYComaTK  shift, and go to state 98
+
+
+State 34
+
+   42 lista_id: identificadorTK • separadorTK lista_id
+   43         | identificadorTK •
+
+    separadorTK  shift, and go to state 99
+
+    $default  reduce using rule 43 (lista_id)
+
+
+State 35
+
+   17 declaracion_var: varTK lista_d_var • finVarTK puntoYComaTK
+
+    finVarTK  shift, and go to state 100
+
+
+State 36
+
+   40 lista_d_var: lista_id • definicionTipoVariableTK d_tipo puntoYComaTK lista_d_var
+
+    definicionTipoVariableTK  shift, and go to state 101
+
+
+State 37
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK • puntoTK
+
+    puntoTK  shift, and go to state 102
+
+
+State 38
+
+    3 bloque_alg: bloque postCondicionTK •
+
+    $default  reduce using rule 3 (bloque_alg)
+
+
+State 39
+
+   83 it_cota_exp: mientrasTK • expresion hacerTK instrucciones finMientrasTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 104
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 40
+
+   78 alternativa: siTK • expresion entoncesTK instrucciones lista_opciones finSiTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 105
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 41
+
+   84 it_cota_fija: paraTK • identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones finParaTK
+
+    identificadorTK  shift, and go to state 106
+
+
+State 42
+
+   72 instruccion: continuarTK •
+
+    $default  reduce using rule 72 (instruccion)
+
+
+State 43
+
+   65 operando: identificadorTK •
+   94 accion_ll: identificadorTK • parentesisAperturaTK l_ll parentesisCierreTK
+
+    parentesisAperturaTK  shift, and go to state 107
+
+    $default  reduce using rule 65 (operando)
+
+
+State 44
+
+   66 operando: operando • puntoTK operando
+   67         | operando • inicioArrayTK expresion finalArrayTK
+   68         | operando • refTK
+   77 asignacion: operando • igualAsignacionTK expresion
+
+    refTK              shift, and go to state 108
+    igualAsignacionTK  shift, and go to state 109
+    inicioArrayTK      shift, and go to state 110
+    puntoTK            shift, and go to state 111
+
+
+State 45
+
+   10 bloque: declaraciones instrucciones •
+
+    $default  reduce using rule 10 (bloque)
+
+
+State 46
+
+   70 instrucciones: instruccion • puntoYComaTK instrucciones
+   71              | instruccion •
+
+    puntoYComaTK  shift, and go to state 112
+
+    $default  reduce using rule 71 (instrucciones)
+
+
+State 47
+
+   73 instruccion: asignacion •
+
+    $default  reduce using rule 73 (instruccion)
+
+
+State 48
+
+   74 instruccion: alternativa •
+
+    $default  reduce using rule 74 (instruccion)
+
+
+State 49
+
+   75 instruccion: iteracion •
+
+    $default  reduce using rule 75 (instruccion)
+
+
+State 50
+
+   82 iteracion: it_cota_exp •
+
+    $default  reduce using rule 82 (iteracion)
+
+
+State 51
+
+   81 iteracion: it_cota_fija •
+
+    $default  reduce using rule 81 (iteracion)
+
+
+State 52
+
+   76 instruccion: accion_ll •
+
+    $default  reduce using rule 76 (instruccion)
+
+
+State 53
+
+   11 declaraciones: declaracion_tipo declaraciones •
+
+    $default  reduce using rule 11 (declaraciones)
+
+
+State 54
+
+   12 declaraciones: declaracion_const declaraciones •
+
+    $default  reduce using rule 12 (declaraciones)
+
+
+State 55
+
+   13 declaraciones: declaracion_var declaraciones •
+
+    $default  reduce using rule 13 (declaraciones)
+
+
+State 56
+
+   87 a_cabecera: identificadorTK • parentesisAperturaTK d_par_form parentesisCierreTK puntoYComaTK
+
+    parentesisAperturaTK  shift, and go to state 113
+
+
+State 57
+
+   85 accion_d: accionTK a_cabecera • bloque finAccionTK
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    bloque             go to state 114
+    declaraciones      go to state 19
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 58
+
+   88 f_cabecera: identificadorTK • parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK d_tipo puntoYComaTK
+
+    parentesisAperturaTK  shift, and go to state 115
+
+
+State 59
+
+   86 funcion_d: funcionTK f_cabecera • bloque devuelveTK expresion finFuncionTK
+
+    tipoTK   shift, and go to state 6
+    varTK    shift, and go to state 16
+    constTK  shift, and go to state 7
+
+    $default  reduce using rule 14 (declaraciones)
+
+    bloque             go to state 116
+    declaraciones      go to state 19
+    declaracion_tipo   go to state 20
+    declaracion_const  go to state 21
+    declaracion_var    go to state 22
+
+
+State 60
+
+   47 decl_ent: entradaTK • lista_d_var
+
+    identificadorTK  shift, and go to state 34
+
+    $default  reduce using rule 41 (lista_d_var)
+
+    lista_d_var  go to state 117
+    lista_id     go to state 36
+
+
+State 61
+
+   48 decl_sal: salidaTK • lista_d_var
+
+    identificadorTK  shift, and go to state 34
+
+    $default  reduce using rule 41 (lista_d_var)
+
+    lista_d_var  go to state 118
+    lista_id     go to state 36
+
+
+State 62
+
+    2 cabecera_alg: decl_globales decl_a_f decl_ent_sal • precondicionTK
+
+    precondicionTK  shift, and go to state 119
+
+
+State 63
+
+   44 decl_ent_sal: decl_ent •
+   45             | decl_ent • decl_sal
+
+    salidaTK  shift, and go to state 61
+
+    $default  reduce using rule 44 (decl_ent_sal)
+
+    decl_sal  go to state 120
+
+
+State 64
+
+   46 decl_ent_sal: decl_sal •
+
+    $default  reduce using rule 46 (decl_ent_sal)
+
+
+State 65
+
+    7 decl_a_f: accion_d decl_a_f •
+
+    $default  reduce using rule 7 (decl_a_f)
+
+
+State 66
+
+    8 decl_a_f: funcion_d decl_a_f •
+
+    $default  reduce using rule 8 (decl_a_f)
+
+
+State 67
+
+   28 d_tipo: cadenaTK •
+
+    $default  reduce using rule 28 (d_tipo)
+
+
+State 68
+
+   29 d_tipo: caracterTK •
+
+    $default  reduce using rule 29 (d_tipo)
+
+
+State 69
+
+   26 d_tipo: booleanoTK •
+
+    $default  reduce using rule 26 (d_tipo)
+
+
+State 70
+
+   27 d_tipo: realTK •
+
+    $default  reduce using rule 27 (d_tipo)
+
+
+State 71
+
+   25 d_tipo: enteroTK •
+
+    $default  reduce using rule 25 (d_tipo)
+
+
+State 72
+
+   20 d_tipo: tuplaTK • lista_campos finTuplaTK
+
+    identificadorTK  shift, and go to state 121
+
+    $default  reduce using rule 33 (lista_campos)
+
+    lista_campos  go to state 122
+
+
+State 73
+
+   24 d_tipo: refTK • d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 123
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 74
+
+   21 d_tipo: tablaTK • inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo
+
+    inicioArrayTK  shift, and go to state 124
+
+
+State 75
+
+   60 exp_b: noTK • exp_b
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 125
+    exp_a       go to state 87
+    exp_b       go to state 126
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 76
+
+   58 exp_a: operadoresSumaORestaTK • exp_a
+
+    operadoresSumaORestaTK  shift, and go to state 76
+    parentesisAperturaTK    shift, and go to state 127
+    identificadorTK         shift, and go to state 128
+    literalEnteroTK         shift, and go to state 81
+    literalRealTK           shift, and go to state 82
+
+    exp_a     go to state 129
+    operando  go to state 89
+
+
+State 77
+
+   54 exp_a: parentesisAperturaTK • exp_a parentesisCierreTK
+   64 exp_b: parentesisAperturaTK • exp_b parentesisCierreTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 125
+    exp_a       go to state 130
+    exp_b       go to state 131
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 78
+
+   62 exp_b: literalBooleanoTK •
+
+    $default  reduce using rule 62 (exp_b)
+
+
+State 79
+
+   22 d_tipo: identificadorTK •
+   65 operando: identificadorTK •
+   95 funcion_ll: identificadorTK • parentesisAperturaTK l_ll parentesisCierreTK
+
+    parentesisAperturaTK  shift, and go to state 132
+
+    puntoYComaTK  reduce using rule 22 (d_tipo)
+    $default      reduce using rule 65 (operando)
+
+
+State 80
+
+   31 expresion_t: literalCaracterTK •
+
+    $default  reduce using rule 31 (expresion_t)
+
+
+State 81
+
+   57 exp_a: literalEnteroTK •
+
+    $default  reduce using rule 57 (exp_a)
+
+
+State 82
+
+   56 exp_a: literalRealTK •
+
+    $default  reduce using rule 56 (exp_a)
+
+
+State 83
+
+   69 operando_b: identificadorBooleanoTK •
+
+    $default  reduce using rule 69 (operando_b)
+
+
+State 84
+
+   18 lista_d_tipo: identificadorTK signoIgualTK d_tipo • puntoYComaTK lista_d_tipo
+
+    puntoYComaTK  shift, and go to state 133
+
+
+State 85
+
+   23 d_tipo: expresion_t • subrangoTK expresion_t
+
+    subrangoTK  shift, and go to state 134
+
+
+State 86
+
+   30 expresion_t: expresion •
+   63 exp_b: expresion • operadoresComparacionTK expresion
+
+    operadoresComparacionTK  shift, and go to state 135
+
+    $default  reduce using rule 30 (expresion_t)
+
+
+State 87
+
+   49 expresion: exp_a •
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+
+    operadoresMultiplicacionODivisionTK  shift, and go to state 136
+    operadoresSumaORestaTK               shift, and go to state 137
+
+    $default  reduce using rule 49 (expresion)
+
+
+State 88
+
+   50 expresion: exp_b •
+   59 exp_b: exp_b • operadoresBooleanosTK exp_b
+
+    operadoresBooleanosTK  shift, and go to state 138
+
+    operadoresBooleanosTK  [reduce using rule 50 (expresion)]
+    $default               reduce using rule 50 (expresion)
+
+
+State 89
+
+   55 exp_a: operando •
+   66 operando: operando • puntoTK operando
+   67         | operando • inicioArrayTK expresion finalArrayTK
+   68         | operando • refTK
+
+    refTK          shift, and go to state 108
+    inicioArrayTK  shift, and go to state 110
+    puntoTK        shift, and go to state 111
+
+    $default  reduce using rule 55 (exp_a)
+
+
+State 90
+
+   61 exp_b: operando_b •
+
+    $default  reduce using rule 61 (exp_b)
+
+
+State 91
+
+   51 expresion: funcion_ll •
+
+    $default  reduce using rule 51 (expresion)
+
+
+State 92
+
+   15 declaracion_tipo: tipoTK lista_d_tipo finTipoTK puntoYComaTK •
+
+    $default  reduce using rule 15 (declaracion_tipo)
+
+
+State 93
+
+   38 lista_d_cte: nombreConstanteTK signoIgualTK literalBooleanoTK • puntoYComaTK lista_d_cte
+
+    puntoYComaTK  shift, and go to state 139
+
+
+State 94
+
+   35 lista_d_cte: nombreConstanteTK signoIgualTK literalCadenaTK • puntoYComaTK lista_d_cte
+
+    puntoYComaTK  shift, and go to state 140
+
+
+State 95
+
+   34 lista_d_cte: nombreConstanteTK signoIgualTK literalCaracterTK • puntoYComaTK lista_d_cte
+
+    puntoYComaTK  shift, and go to state 141
+
+
+State 96
+
+   36 lista_d_cte: nombreConstanteTK signoIgualTK literalEnteroTK • puntoYComaTK lista_d_cte
+
+    puntoYComaTK  shift, and go to state 142
+
+
+State 97
+
+   37 lista_d_cte: nombreConstanteTK signoIgualTK literalRealTK • puntoYComaTK lista_d_cte
+
+    puntoYComaTK  shift, and go to state 143
+
+
+State 98
+
+   16 declaracion_const: constTK lista_d_cte finConstTK puntoYComaTK •
+
+    $default  reduce using rule 16 (declaracion_const)
+
+
+State 99
+
+   42 lista_id: identificadorTK separadorTK • lista_id
+
+    identificadorTK  shift, and go to state 34
+
+    lista_id  go to state 144
+
+
+State 100
+
+   17 declaracion_var: varTK lista_d_var finVarTK • puntoYComaTK
+
+    puntoYComaTK  shift, and go to state 145
+
+
+State 101
+
+   40 lista_d_var: lista_id definicionTipoVariableTK • d_tipo puntoYComaTK lista_d_var
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 146
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 102
+
+    1 desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK •
+
+    $default  reduce using rule 1 (desc_algoritmo)
+
+
+State 103
+
+   65 operando: identificadorTK •
+   95 funcion_ll: identificadorTK • parentesisAperturaTK l_ll parentesisCierreTK
+
+    parentesisAperturaTK  shift, and go to state 132
+
+    $default  reduce using rule 65 (operando)
+
+
+State 104
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   83 it_cota_exp: mientrasTK expresion • hacerTK instrucciones finMientrasTK
+
+    hacerTK                  shift, and go to state 147
+    operadoresComparacionTK  shift, and go to state 135
+
+
+State 105
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   78 alternativa: siTK expresion • entoncesTK instrucciones lista_opciones finSiTK
+
+    operadoresComparacionTK  shift, and go to state 135
+    entoncesTK               shift, and go to state 148
+
+
+State 106
+
+   84 it_cota_fija: paraTK identificadorTK • igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones finParaTK
+
+    igualAsignacionTK  shift, and go to state 149
+
+
+State 107
+
+   94 accion_ll: identificadorTK parentesisAperturaTK • l_ll parentesisCierreTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 150
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+    l_ll        go to state 151
+
+
+State 108
+
+   68 operando: operando refTK •
+
+    $default  reduce using rule 68 (operando)
+
+
+State 109
+
+   77 asignacion: operando igualAsignacionTK • expresion
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 152
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 110
+
+   67 operando: operando inicioArrayTK • expresion finalArrayTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 153
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 111
+
+   66 operando: operando puntoTK • operando
+
+    identificadorTK  shift, and go to state 128
+
+    operando  go to state 154
+
+
+State 112
+
+   70 instrucciones: instruccion puntoYComaTK • instrucciones
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 155
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 113
+
+   87 a_cabecera: identificadorTK parentesisAperturaTK • d_par_form parentesisCierreTK puntoYComaTK
+
+    entradaTK        shift, and go to state 156
+    entradaSalidaTK  shift, and go to state 157
+    salidaTK         shift, and go to state 158
+
+    $default  reduce using rule 90 (d_par_form)
+
+    d_par_form  go to state 159
+    d_p_form    go to state 160
+
+
+State 114
+
+   85 accion_d: accionTK a_cabecera bloque • finAccionTK
+
+    finAccionTK  shift, and go to state 161
+
+
+State 115
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK • lista_d_var parentesisCierreTK devuelveTK d_tipo puntoYComaTK
+
+    identificadorTK  shift, and go to state 34
+
+    $default  reduce using rule 41 (lista_d_var)
+
+    lista_d_var  go to state 162
+    lista_id     go to state 36
+
+
+State 116
+
+   86 funcion_d: funcionTK f_cabecera bloque • devuelveTK expresion finFuncionTK
+
+    devuelveTK  shift, and go to state 163
+
+
+State 117
+
+   47 decl_ent: entradaTK lista_d_var •
+
+    $default  reduce using rule 47 (decl_ent)
+
+
+State 118
+
+   48 decl_sal: salidaTK lista_d_var •
+
+    $default  reduce using rule 48 (decl_sal)
+
+
+State 119
+
+    2 cabecera_alg: decl_globales decl_a_f decl_ent_sal precondicionTK •
+
+    $default  reduce using rule 2 (cabecera_alg)
+
+
+State 120
+
+   45 decl_ent_sal: decl_ent decl_sal •
+
+    $default  reduce using rule 45 (decl_ent_sal)
+
+
+State 121
+
+   32 lista_campos: identificadorTK • definicionTipoVariableTK d_tipo puntoYComaTK lista_campos
+
+    definicionTipoVariableTK  shift, and go to state 164
+
+
+State 122
+
+   20 d_tipo: tuplaTK lista_campos • finTuplaTK
+
+    finTuplaTK  shift, and go to state 165
+
+
+State 123
+
+   24 d_tipo: refTK d_tipo •
+
+    $default  reduce using rule 24 (d_tipo)
+
+
+State 124
+
+   21 d_tipo: tablaTK inicioArrayTK • expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion_t  go to state 166
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 125
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+
+    operadoresComparacionTK  shift, and go to state 135
+
+
+State 126
+
+   50 expresion: exp_b •
+   59 exp_b: exp_b • operadoresBooleanosTK exp_b
+   60      | noTK exp_b •
+
+    operadoresComparacionTK  reduce using rule 50 (expresion)
+    operadoresComparacionTK  [reduce using rule 60 (exp_b)]
+    $default                 reduce using rule 60 (exp_b)
+
+
+State 127
+
+   54 exp_a: parentesisAperturaTK • exp_a parentesisCierreTK
+
+    operadoresSumaORestaTK  shift, and go to state 76
+    parentesisAperturaTK    shift, and go to state 127
+    identificadorTK         shift, and go to state 128
+    literalEnteroTK         shift, and go to state 81
+    literalRealTK           shift, and go to state 82
+
+    exp_a     go to state 167
+    operando  go to state 89
+
+
+State 128
+
+   65 operando: identificadorTK •
+
+    $default  reduce using rule 65 (operando)
+
+
+State 129
+
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+   58      | operadoresSumaORestaTK exp_a •
+
+    $default  reduce using rule 58 (exp_a)
+
+
+State 130
+
+   49 expresion: exp_a •
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+   54      | parentesisAperturaTK exp_a • parentesisCierreTK
+
+    operadoresMultiplicacionODivisionTK  shift, and go to state 136
+    operadoresSumaORestaTK               shift, and go to state 137
+    parentesisCierreTK                   shift, and go to state 168
+
+    $default  reduce using rule 49 (expresion)
+
+
+State 131
+
+   50 expresion: exp_b •
+   59 exp_b: exp_b • operadoresBooleanosTK exp_b
+   64      | parentesisAperturaTK exp_b • parentesisCierreTK
+
+    operadoresBooleanosTK  shift, and go to state 138
+    parentesisCierreTK     shift, and go to state 169
+
+    $default  reduce using rule 50 (expresion)
+
+
+State 132
+
+   95 funcion_ll: identificadorTK parentesisAperturaTK • l_ll parentesisCierreTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 150
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+    l_ll        go to state 170
+
+
+State 133
+
+   18 lista_d_tipo: identificadorTK signoIgualTK d_tipo puntoYComaTK • lista_d_tipo
+
+    identificadorTK  shift, and go to state 12
+
+    $default  reduce using rule 19 (lista_d_tipo)
+
+    lista_d_tipo  go to state 171
+
+
+State 134
+
+   23 d_tipo: expresion_t subrangoTK • expresion_t
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion_t  go to state 172
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 135
+
+   63 exp_b: expresion operadoresComparacionTK • expresion
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 173
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 136
+
+   53 exp_a: exp_a operadoresMultiplicacionODivisionTK • exp_a
+
+    operadoresSumaORestaTK  shift, and go to state 76
+    parentesisAperturaTK    shift, and go to state 127
+    identificadorTK         shift, and go to state 128
+    literalEnteroTK         shift, and go to state 81
+    literalRealTK           shift, and go to state 82
+
+    exp_a     go to state 174
+    operando  go to state 89
+
+
+State 137
+
+   52 exp_a: exp_a operadoresSumaORestaTK • exp_a
+
+    operadoresSumaORestaTK  shift, and go to state 76
+    parentesisAperturaTK    shift, and go to state 127
+    identificadorTK         shift, and go to state 128
+    literalEnteroTK         shift, and go to state 81
+    literalRealTK           shift, and go to state 82
+
+    exp_a     go to state 175
+    operando  go to state 89
+
+
+State 138
+
+   59 exp_b: exp_b operadoresBooleanosTK • exp_b
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 125
+    exp_a       go to state 87
+    exp_b       go to state 176
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 139
+
+   38 lista_d_cte: nombreConstanteTK signoIgualTK literalBooleanoTK puntoYComaTK • lista_d_cte
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 177
+
+
+State 140
+
+   35 lista_d_cte: nombreConstanteTK signoIgualTK literalCadenaTK puntoYComaTK • lista_d_cte
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 178
+
+
+State 141
+
+   34 lista_d_cte: nombreConstanteTK signoIgualTK literalCaracterTK puntoYComaTK • lista_d_cte
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 179
+
+
+State 142
+
+   36 lista_d_cte: nombreConstanteTK signoIgualTK literalEnteroTK puntoYComaTK • lista_d_cte
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 180
+
+
+State 143
+
+   37 lista_d_cte: nombreConstanteTK signoIgualTK literalRealTK puntoYComaTK • lista_d_cte
+
+    nombreConstanteTK  shift, and go to state 14
+
+    $default  reduce using rule 39 (lista_d_cte)
+
+    lista_d_cte  go to state 181
+
+
+State 144
+
+   42 lista_id: identificadorTK separadorTK lista_id •
+
+    $default  reduce using rule 42 (lista_id)
+
+
+State 145
+
+   17 declaracion_var: varTK lista_d_var finVarTK puntoYComaTK •
+
+    $default  reduce using rule 17 (declaracion_var)
+
+
+State 146
+
+   40 lista_d_var: lista_id definicionTipoVariableTK d_tipo • puntoYComaTK lista_d_var
+
+    puntoYComaTK  shift, and go to state 182
+
+
+State 147
+
+   83 it_cota_exp: mientrasTK expresion hacerTK • instrucciones finMientrasTK
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 183
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 148
+
+   78 alternativa: siTK expresion entoncesTK • instrucciones lista_opciones finSiTK
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 184
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 149
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK • expresion hastaTK expresion hacerTK instrucciones finParaTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 185
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 150
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   96 l_ll: expresion • separadorTK l_ll
+   97     | expresion •
+
+    operadoresComparacionTK  shift, and go to state 135
+    separadorTK              shift, and go to state 186
+
+    $default  reduce using rule 97 (l_ll)
+
+
+State 151
+
+   94 accion_ll: identificadorTK parentesisAperturaTK l_ll • parentesisCierreTK
+
+    parentesisCierreTK  shift, and go to state 187
+
+
+State 152
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   77 asignacion: operando igualAsignacionTK expresion •
+
+    operadoresComparacionTK  shift, and go to state 135
+
+    $default  reduce using rule 77 (asignacion)
+
+
+State 153
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   67 operando: operando inicioArrayTK expresion • finalArrayTK
+
+    operadoresComparacionTK  shift, and go to state 135
+    finalArrayTK             shift, and go to state 188
+
+
+State 154
+
+   66 operando: operando • puntoTK operando
+   66         | operando puntoTK operando •
+   67         | operando • inicioArrayTK expresion finalArrayTK
+   68         | operando • refTK
+
+    $default  reduce using rule 66 (operando)
+
+
+State 155
+
+   70 instrucciones: instruccion puntoYComaTK instrucciones •
+
+    $default  reduce using rule 70 (instrucciones)
+
+
+State 156
+
+   91 d_p_form: entradaTK • lista_id definicionTipoVariableTK d_tipo
+
+    identificadorTK  shift, and go to state 34
+
+    lista_id  go to state 189
+
+
+State 157
+
+   93 d_p_form: entradaSalidaTK • lista_id definicionTipoVariableTK d_tipo
+
+    identificadorTK  shift, and go to state 34
+
+    lista_id  go to state 190
+
+
+State 158
+
+   92 d_p_form: salidaTK • lista_id definicionTipoVariableTK d_tipo
+
+    identificadorTK  shift, and go to state 34
+
+    lista_id  go to state 191
+
+
+State 159
+
+   87 a_cabecera: identificadorTK parentesisAperturaTK d_par_form • parentesisCierreTK puntoYComaTK
+
+    parentesisCierreTK  shift, and go to state 192
+
+
+State 160
+
+   89 d_par_form: d_p_form • puntoYComaTK d_par_form
+
+    puntoYComaTK  shift, and go to state 193
+
+
+State 161
+
+   85 accion_d: accionTK a_cabecera bloque finAccionTK •
+
+    $default  reduce using rule 85 (accion_d)
+
+
+State 162
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var • parentesisCierreTK devuelveTK d_tipo puntoYComaTK
+
+    parentesisCierreTK  shift, and go to state 194
+
+
+State 163
+
+   86 funcion_d: funcionTK f_cabecera bloque devuelveTK • expresion finFuncionTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 195
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 164
+
+   32 lista_campos: identificadorTK definicionTipoVariableTK • d_tipo puntoYComaTK lista_campos
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 196
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 165
+
+   20 d_tipo: tuplaTK lista_campos finTuplaTK •
+
+    $default  reduce using rule 20 (d_tipo)
+
+
+State 166
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t • subrangoTK expresion_t finalArrayTK deTK d_tipo
+
+    subrangoTK  shift, and go to state 197
+
+
+State 167
+
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+   54      | parentesisAperturaTK exp_a • parentesisCierreTK
+
+    operadoresMultiplicacionODivisionTK  shift, and go to state 136
+    operadoresSumaORestaTK               shift, and go to state 137
+    parentesisCierreTK                   shift, and go to state 168
+
+
+State 168
+
+   54 exp_a: parentesisAperturaTK exp_a parentesisCierreTK •
+
+    $default  reduce using rule 54 (exp_a)
+
+
+State 169
+
+   64 exp_b: parentesisAperturaTK exp_b parentesisCierreTK •
+
+    $default  reduce using rule 64 (exp_b)
+
+
+State 170
+
+   95 funcion_ll: identificadorTK parentesisAperturaTK l_ll • parentesisCierreTK
+
+    parentesisCierreTK  shift, and go to state 198
+
+
+State 171
+
+   18 lista_d_tipo: identificadorTK signoIgualTK d_tipo puntoYComaTK lista_d_tipo •
+
+    $default  reduce using rule 18 (lista_d_tipo)
+
+
+State 172
+
+   23 d_tipo: expresion_t subrangoTK expresion_t •
+
+    $default  reduce using rule 23 (d_tipo)
+
+
+State 173
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   63      | expresion operadoresComparacionTK expresion •
+
+    operadoresComparacionTK  error (nonassociative)
+
+    $default  reduce using rule 63 (exp_b)
+
+
+State 174
+
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+   53      | exp_a operadoresMultiplicacionODivisionTK exp_a •
+
+    $default  reduce using rule 53 (exp_a)
+
+
+State 175
+
+   52 exp_a: exp_a • operadoresSumaORestaTK exp_a
+   52      | exp_a operadoresSumaORestaTK exp_a •
+   53      | exp_a • operadoresMultiplicacionODivisionTK exp_a
+
+    operadoresMultiplicacionODivisionTK  shift, and go to state 136
+
+    $default  reduce using rule 52 (exp_a)
+
+
+State 176
+
+   50 expresion: exp_b •
+   59 exp_b: exp_b • operadoresBooleanosTK exp_b
+   59      | exp_b operadoresBooleanosTK exp_b •
+
+    operadoresComparacionTK  reduce using rule 50 (expresion)
+    operadoresComparacionTK  [reduce using rule 59 (exp_b)]
+    $default                 reduce using rule 59 (exp_b)
+
+
+State 177
+
+   38 lista_d_cte: nombreConstanteTK signoIgualTK literalBooleanoTK puntoYComaTK lista_d_cte •
+
+    $default  reduce using rule 38 (lista_d_cte)
+
+
+State 178
+
+   35 lista_d_cte: nombreConstanteTK signoIgualTK literalCadenaTK puntoYComaTK lista_d_cte •
+
+    $default  reduce using rule 35 (lista_d_cte)
+
+
+State 179
+
+   34 lista_d_cte: nombreConstanteTK signoIgualTK literalCaracterTK puntoYComaTK lista_d_cte •
+
+    $default  reduce using rule 34 (lista_d_cte)
+
+
+State 180
+
+   36 lista_d_cte: nombreConstanteTK signoIgualTK literalEnteroTK puntoYComaTK lista_d_cte •
+
+    $default  reduce using rule 36 (lista_d_cte)
+
+
+State 181
+
+   37 lista_d_cte: nombreConstanteTK signoIgualTK literalRealTK puntoYComaTK lista_d_cte •
+
+    $default  reduce using rule 37 (lista_d_cte)
+
+
+State 182
+
+   40 lista_d_var: lista_id definicionTipoVariableTK d_tipo puntoYComaTK • lista_d_var
+
+    identificadorTK  shift, and go to state 34
+
+    $default  reduce using rule 41 (lista_d_var)
+
+    lista_d_var  go to state 199
+    lista_id     go to state 36
+
+
+State 183
+
+   83 it_cota_exp: mientrasTK expresion hacerTK instrucciones • finMientrasTK
+
+    finMientrasTK  shift, and go to state 200
+
+
+State 184
+
+   78 alternativa: siTK expresion entoncesTK instrucciones • lista_opciones finSiTK
+
+    siNoSiTK  shift, and go to state 201
+
+    $default  reduce using rule 80 (lista_opciones)
+
+    lista_opciones  go to state 202
+
+
+State 185
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion • hastaTK expresion hacerTK instrucciones finParaTK
+
+    hastaTK                  shift, and go to state 203
+    operadoresComparacionTK  shift, and go to state 135
+
+
+State 186
+
+   96 l_ll: expresion separadorTK • l_ll
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 150
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+    l_ll        go to state 204
+
+
+State 187
+
+   94 accion_ll: identificadorTK parentesisAperturaTK l_ll parentesisCierreTK •
+
+    $default  reduce using rule 94 (accion_ll)
+
+
+State 188
+
+   67 operando: operando inicioArrayTK expresion finalArrayTK •
+
+    $default  reduce using rule 67 (operando)
+
+
+State 189
+
+   91 d_p_form: entradaTK lista_id • definicionTipoVariableTK d_tipo
+
+    definicionTipoVariableTK  shift, and go to state 205
+
+
+State 190
+
+   93 d_p_form: entradaSalidaTK lista_id • definicionTipoVariableTK d_tipo
+
+    definicionTipoVariableTK  shift, and go to state 206
+
+
+State 191
+
+   92 d_p_form: salidaTK lista_id • definicionTipoVariableTK d_tipo
+
+    definicionTipoVariableTK  shift, and go to state 207
+
+
+State 192
+
+   87 a_cabecera: identificadorTK parentesisAperturaTK d_par_form parentesisCierreTK • puntoYComaTK
+
+    puntoYComaTK  shift, and go to state 208
+
+
+State 193
+
+   89 d_par_form: d_p_form puntoYComaTK • d_par_form
+
+    entradaTK        shift, and go to state 156
+    entradaSalidaTK  shift, and go to state 157
+    salidaTK         shift, and go to state 158
+
+    $default  reduce using rule 90 (d_par_form)
+
+    d_par_form  go to state 209
+    d_p_form    go to state 160
+
+
+State 194
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK • devuelveTK d_tipo puntoYComaTK
+
+    devuelveTK  shift, and go to state 210
+
+
+State 195
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   86 funcion_d: funcionTK f_cabecera bloque devuelveTK expresion • finFuncionTK
+
+    finFuncionTK             shift, and go to state 211
+    operadoresComparacionTK  shift, and go to state 135
+
+
+State 196
+
+   32 lista_campos: identificadorTK definicionTipoVariableTK d_tipo • puntoYComaTK lista_campos
+
+    puntoYComaTK  shift, and go to state 212
+
+
+State 197
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK • expresion_t finalArrayTK deTK d_tipo
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion_t  go to state 213
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 198
+
+   95 funcion_ll: identificadorTK parentesisAperturaTK l_ll parentesisCierreTK •
+
+    $default  reduce using rule 95 (funcion_ll)
+
+
+State 199
+
+   40 lista_d_var: lista_id definicionTipoVariableTK d_tipo puntoYComaTK lista_d_var •
+
+    $default  reduce using rule 40 (lista_d_var)
+
+
+State 200
+
+   83 it_cota_exp: mientrasTK expresion hacerTK instrucciones finMientrasTK •
+
+    $default  reduce using rule 83 (it_cota_exp)
+
+
+State 201
+
+   79 lista_opciones: siNoSiTK • expresion entoncesTK instrucciones lista_opciones
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 214
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 202
+
+   78 alternativa: siTK expresion entoncesTK instrucciones lista_opciones • finSiTK
+
+    finSiTK  shift, and go to state 215
+
+
+State 203
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK • expresion hacerTK instrucciones finParaTK
+
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 103
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    expresion   go to state 216
+    exp_a       go to state 87
+    exp_b       go to state 88
+    operando    go to state 89
+    operando_b  go to state 90
+    funcion_ll  go to state 91
+
+
+State 204
+
+   96 l_ll: expresion separadorTK l_ll •
+
+    $default  reduce using rule 96 (l_ll)
+
+
+State 205
+
+   91 d_p_form: entradaTK lista_id definicionTipoVariableTK • d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 217
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 206
+
+   93 d_p_form: entradaSalidaTK lista_id definicionTipoVariableTK • d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 218
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 207
+
+   92 d_p_form: salidaTK lista_id definicionTipoVariableTK • d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 219
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 208
+
+   87 a_cabecera: identificadorTK parentesisAperturaTK d_par_form parentesisCierreTK puntoYComaTK •
+
+    $default  reduce using rule 87 (a_cabecera)
+
+
+State 209
+
+   89 d_par_form: d_p_form puntoYComaTK d_par_form •
+
+    $default  reduce using rule 89 (d_par_form)
+
+
+State 210
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK • d_tipo puntoYComaTK
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 220
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 211
+
+   86 funcion_d: funcionTK f_cabecera bloque devuelveTK expresion finFuncionTK •
+
+    $default  reduce using rule 86 (funcion_d)
+
+
+State 212
+
+   32 lista_campos: identificadorTK definicionTipoVariableTK d_tipo puntoYComaTK • lista_campos
+
+    identificadorTK  shift, and go to state 121
+
+    $default  reduce using rule 33 (lista_campos)
+
+    lista_campos  go to state 221
+
+
+State 213
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK expresion_t • finalArrayTK deTK d_tipo
+
+    finalArrayTK  shift, and go to state 222
+
+
+State 214
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   79 lista_opciones: siNoSiTK expresion • entoncesTK instrucciones lista_opciones
+
+    operadoresComparacionTK  shift, and go to state 135
+    entoncesTK               shift, and go to state 223
+
+
+State 215
+
+   78 alternativa: siTK expresion entoncesTK instrucciones lista_opciones finSiTK •
+
+    $default  reduce using rule 78 (alternativa)
+
+
+State 216
+
+   63 exp_b: expresion • operadoresComparacionTK expresion
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion • hacerTK instrucciones finParaTK
+
+    hacerTK                  shift, and go to state 224
+    operadoresComparacionTK  shift, and go to state 135
+
+
+State 217
+
+   91 d_p_form: entradaTK lista_id definicionTipoVariableTK d_tipo •
+
+    $default  reduce using rule 91 (d_p_form)
+
+
+State 218
+
+   93 d_p_form: entradaSalidaTK lista_id definicionTipoVariableTK d_tipo •
+
+    $default  reduce using rule 93 (d_p_form)
+
+
+State 219
+
+   92 d_p_form: salidaTK lista_id definicionTipoVariableTK d_tipo •
+
+    $default  reduce using rule 92 (d_p_form)
+
+
+State 220
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK d_tipo • puntoYComaTK
+
+    puntoYComaTK  shift, and go to state 225
+
+
+State 221
+
+   32 lista_campos: identificadorTK definicionTipoVariableTK d_tipo puntoYComaTK lista_campos •
+
+    $default  reduce using rule 32 (lista_campos)
+
+
+State 222
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK • deTK d_tipo
+
+    deTK  shift, and go to state 226
+
+
+State 223
+
+   79 lista_opciones: siNoSiTK expresion entoncesTK • instrucciones lista_opciones
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 227
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 224
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK • instrucciones finParaTK
+
+    mientrasTK       shift, and go to state 39
+    siTK             shift, and go to state 40
+    paraTK           shift, and go to state 41
+    continuarTK      shift, and go to state 42
+    identificadorTK  shift, and go to state 43
+
+    operando       go to state 44
+    instrucciones  go to state 228
+    instruccion    go to state 46
+    asignacion     go to state 47
+    alternativa    go to state 48
+    iteracion      go to state 49
+    it_cota_exp    go to state 50
+    it_cota_fija   go to state 51
+    accion_ll      go to state 52
+
+
+State 225
+
+   88 f_cabecera: identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK d_tipo puntoYComaTK •
+
+    $default  reduce using rule 88 (f_cabecera)
+
+
+State 226
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK • d_tipo
+
+    cadenaTK                 shift, and go to state 67
+    caracterTK               shift, and go to state 68
+    booleanoTK               shift, and go to state 69
+    realTK                   shift, and go to state 70
+    enteroTK                 shift, and go to state 71
+    tuplaTK                  shift, and go to state 72
+    refTK                    shift, and go to state 73
+    tablaTK                  shift, and go to state 74
+    noTK                     shift, and go to state 75
+    operadoresSumaORestaTK   shift, and go to state 76
+    parentesisAperturaTK     shift, and go to state 77
+    literalBooleanoTK        shift, and go to state 78
+    identificadorTK          shift, and go to state 79
+    literalCaracterTK        shift, and go to state 80
+    literalEnteroTK          shift, and go to state 81
+    literalRealTK            shift, and go to state 82
+    identificadorBooleanoTK  shift, and go to state 83
+
+    d_tipo       go to state 229
+    expresion_t  go to state 85
+    expresion    go to state 86
+    exp_a        go to state 87
+    exp_b        go to state 88
+    operando     go to state 89
+    operando_b   go to state 90
+    funcion_ll   go to state 91
+
+
+State 227
+
+   79 lista_opciones: siNoSiTK expresion entoncesTK instrucciones • lista_opciones
+
+    siNoSiTK  shift, and go to state 201
+
+    $default  reduce using rule 80 (lista_opciones)
+
+    lista_opciones  go to state 230
+
+
+State 228
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones • finParaTK
+
+    finParaTK  shift, and go to state 231
+
+
+State 229
+
+   21 d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo •
+
+    $default  reduce using rule 21 (d_tipo)
+
+
+State 230
+
+   79 lista_opciones: siNoSiTK expresion entoncesTK instrucciones lista_opciones •
+
+    $default  reduce using rule 79 (lista_opciones)
+
+
+State 231
+
+   84 it_cota_fija: paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones finParaTK •
+
+    $default  reduce using rule 84 (it_cota_fija)

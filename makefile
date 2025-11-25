@@ -1,5 +1,5 @@
-compilador: parser.tab.c lex.yy.o literal.o literal.h nombresDeTipos.h tablaDeConstantes.o tablaDeConstantes.h tablaDeSimbolos.o
-	gcc parser.tab.c lex.yy.o tablaDeConstantes.o literal.o tablaDeSimbolos.o
+compilador: parser.tab.c lex.yy.o literal.o literal.h nombresDeTipos.h tablaDeConstantes.o tablaDeConstantes.h tablaDeSimbolos.o tablaDeCuadruplas.o
+	gcc parser.tab.c lex.yy.o tablaDeConstantes.o literal.o tablaDeSimbolos.o tablaDeCuadruplas.o
 	mv a.out compilador
 
 parser.tab.c parser.tah.h: parser.y literal.h nombresDeTipos.h tablaDeConstantes.h
@@ -17,6 +17,9 @@ tablaDeSimbolos.o: tablaDeSimbolos.c
 
 tablaDeConstantes.o: tablaDeConstantes.c
 	gcc -c tablaDeConstantes.c
+
+tablaDeCuadruplas.o: tablaDeCuadruplas.c
+	gcc -c tablaDeCuadruplas.c
 
 scanner: scannerVFinal.l
 	flex scannerVFinal.l

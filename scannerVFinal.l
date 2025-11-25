@@ -223,8 +223,8 @@ literalRealOP	{literalEnteroOP}[rR]
 	printf("%c\n", yytext[0]);
 }
 {operadoresSumaRestaOP}	{
+	yylval.operador = yytext[0];
 	return operadoresSumaORestaTK;
-	printf("%c\n", yytext[0]);
 }
 {parentesisAperturaOP}	{
 	return parentesisAperturaTK;

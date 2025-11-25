@@ -4,6 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const char* nombreDeTipoToString(NombreDeTipoT tipo) {
+    switch (tipo) {
+        case BOOLEANO: return "Booleano";
+        case CADENA: return "Cadena";
+        case CARACTER: return "Caracter";
+        case ENTERO: return "Entero";
+        case REAL: return "Real";
+    }
+}
 
 void agregarVariable(char *nombreVariable, NombreDeTipoT tipoVariable) {
     for (int i = 0; i < pos; i++){
@@ -17,14 +26,39 @@ void agregarVariable(char *nombreVariable, NombreDeTipoT tipoVariable) {
     pos++;
 }
 
-const char* nombreDeTipoToString(NombreDeTipoT tipo) {
-    switch (tipo) {
-        case BOOLEANO: return "Booleano";
-        case CADENA: return "Cadena";
-        case CARACTER: return "Caracter";
-        case ENTERO: return "Entero";
-        case REAL: return "Real";
+infoVariable agregarTemporal() {
+    tablaDeSimbolos[pos].nombre = (char*)malloc(5 * sizeof(char));
+    sprintf(tablaDeSimbolos[pos].nombre, "T%d", pos);
+    pos++;
+    return tablaDeSimbolos[pos - 1];
+}
+
+void actualizarTipoTemporal(infoVariable variable, NombreDeTipoT tipo) {
+    int posicion = obtenerPos(variable.nombre);
+    if (posicion == -1) {
+        printf("ERROR: No existe la variable");
+    } else {
+        tablaDeSimbolos[posicion].tipo = tipo;
+    }     
+} 
+
+NombreDeTipoT obtenerTipo(char *nombre) {
+    int posicion = obtenerPos(nombre);
+    if (posicion == -1) {
+        printf("ERROR: No existe la variable");
+    } else {
+        return tablaDeSimbolos[posicion].tipo;
     }
+}
+
+int obtenerPos(char *nombre) {
+    for (int i = 0; i < pos; i++){
+        if (strcmp(nombre, tablaDeSimbolos[i].nombre) == 0){
+            return i;
+        } 
+    }
+    printf("ERROR: No existe la variable");
+    return -1;
 }
 
 void imprimirTabla(){
