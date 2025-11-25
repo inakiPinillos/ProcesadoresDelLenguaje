@@ -153,51 +153,50 @@
 
 desc_algoritmo: 
 	algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK{
-			}
+	}
 	;
 cabecera_alg: 
 	decl_globales decl_a_f decl_ent_sal precondicionTK{
-
-			}
+	}
 	;
 bloque_alg: 
 	bloque postCondicionTK{
-			}
+	}
 	;
 decl_globales:
 	declaracion_tipo decl_globales {
 
-		}
+	}
 	| declaracion_const decl_globales {
 
-		}
+	}
 	|
 	;
 
 decl_a_f:
 	accion_d decl_a_f {
 
-		} 
+	} 
 	| funcion_d decl_a_f {
 
-		}
+	}
 	| 
 	;
 bloque:
 	declaraciones instrucciones {
 
-		}
+	}
 	;
 declaraciones:
 	declaracion_tipo declaraciones {
 
-		}
+	}
 	| declaracion_const declaraciones {
 
-		}
+	}
 	| declaracion_var declaraciones {
 
-		}
+	}
 	|
 	;
 
@@ -206,70 +205,70 @@ declaraciones:
 declaracion_tipo:
 	tipoTK lista_d_tipo finTipoTK puntoYComaTK {
 
-		}
+	}
 	;
 declaracion_const:
 	constTK lista_d_cte finConstTK puntoYComaTK {
-			printf("COMPILADOR: Se ha creado la tabla de constantes con %d constantes\n", $2);
-		}
+
+	}
 	;
 declaracion_var:
 	varTK lista_d_var finVarTK puntoYComaTK {
 			
-		}
+	}
 	;
 
 
 lista_d_tipo:
 	identificadorTK signoIgualTK d_tipo puntoYComaTK lista_d_tipo {
 
-		}
+	}
 	|
 	;
 d_tipo:
 	tuplaTK lista_campos finTuplaTK {
 
-		}
+	}
 	| tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo {
 
-		}
+	}
 	| identificadorTK {
 
-		}
+	}
 	| expresion_t subrangoTK expresion_t {
 
-		}
+	}
 	| refTK d_tipo {
 
-		}
+	}
 	| enteroTK {
-			$$ = ENTERO;
-		}
+		$$ = ENTERO;
+	}
 	| booleanoTK {
-			$$ = BOOLEANO;
-		}
+		$$ = BOOLEANO;
+	}
 	| realTK {
-			$$ = REAL;
-		}
+		$$ = REAL;
+	}
 	| cadenaTK {
-			$$ = CADENA;
-		}
+		$$ = CADENA;
+	}
 	| caracterTK {
-			$$ = CARACTER;
-		}
+		$$ = CARACTER;
+	}
 	;
 expresion_t:
 	expresion {
 
-		}
+	}
 	| literalCaracterTK {
 
-		}
+	}
 	;
 lista_campos:
 	identificadorTK definicionTipoVariableTK d_tipo puntoYComaTK lista_campos {
 
-		}
+	}
 	|
 	;
 
@@ -277,19 +276,19 @@ lista_campos:
 lista_d_cte:
 	nombreConstanteTK signoIgualTK literalCaracterTK puntoYComaTK lista_d_cte {
 
-		}
+	}
 	| nombreConstanteTK signoIgualTK literalCadenaTK puntoYComaTK lista_d_cte {
 
-		}
+	}
 	| nombreConstanteTK signoIgualTK literalEnteroTK puntoYComaTK lista_d_cte {
 
-		}
+	}
 	| nombreConstanteTK signoIgualTK literalRealTK puntoYComaTK lista_d_cte {
 
-		}
+	}
 	| nombreConstanteTK signoIgualTK literalBooleanoTK puntoYComaTK lista_d_cte {
 
-		}
+	}
 	| {
 
 	}
@@ -320,35 +319,35 @@ lista_id:
 decl_ent_sal:
 	decl_ent {
 
-		}
+	}
 	| decl_ent decl_sal {
 
-		}
+	}
 	| decl_sal {
 
-		}
+	}
 	;
 decl_ent:
 	entradaTK lista_d_var {
 
-		}
+	}
 	;
 decl_sal:
 	salidaTK lista_d_var {
 
-		}
+	}
 	;
 
 expresion:
 	exp_a {
 
-		}
+	}
 	| exp_b {
 
-		}
+	}
 	| funcion_ll {
 
-		}
+	}
 	;
 exp_a:
 	exp_a operadoresSumaORestaTK exp_a {
@@ -364,41 +363,42 @@ exp_a:
 		}else{
 		}
 
-		}
+	}
 	| exp_a operadoresMultiplicacionODivisionTK exp_a {
-		}
+
+	}
 	| parentesisAperturaTK exp_a parentesisCierreTK {
 
-		}
+	}
 	| operando {
-			$$ = $1;
-		}
+		$$ = $1;
+	}
 	| literalRealTK {
 
-		}
+	}
 	| literalEnteroTK {
 
-		}
+	}
 	| operadoresSumaORestaTK exp_a %prec UPLUSMINUS{
 
-		}
+	}
 	;
 exp_b:
 	exp_b operadoresBooleanosTK exp_b {
 
-		}
+	}
 	| noTK exp_b {
 
-		}
+	}
 	| operando_b {
 
-		}
+	}
 	| literalBooleanoTK {
 
-		}
+	}
 	| expresion operadoresComparacionTK expresion {
 
-		}
+	}
 	| parentesisAperturaTK exp_b parentesisCierreTK {
 
 	}
@@ -406,128 +406,128 @@ exp_b:
 
 operando:
 	identificadorTK {
-			$$.place = obtenerPos($1);
-			$$.type = obtenerTipo($1);
-		}
+		$$.place = obtenerPos($1);
+		$$.type = obtenerTipo($1);
+	}
 	| operando puntoTK operando {
 
-		}
+	}
 	| operando inicioArrayTK expresion finalArrayTK {
 
-		}
+	}
 	| operando refTK {
 
-		}
+	}
 	;
 
 operando_b:
 	identificadorBooleanoTK {
 
-		}
+	}
 	;
 
 instrucciones:
 	instruccion puntoYComaTK instrucciones {
 
-		}
+	}
 	| instruccion {
 
-		}
+	}
 	;
 instruccion:
 	continuarTK {
 
-		}
+	}
 	| asignacion {
 
-		}
+	}
 	| alternativa {
 
-		}
+	}
 	| iteracion {
 
-		}
+	}
 	| accion_ll {
 
-		}
+	}
 	;
 asignacion:
 	operando igualAsignacionTK expresion {
 
-		}
+	}
 	;
 alternativa:
 	siTK expresion entoncesTK instrucciones lista_opciones finSiTK {
 
-		}
+	}
 	;
 lista_opciones:
 	siNoSiTK expresion entoncesTK instrucciones lista_opciones {
 
-		}
+	}
 	| 
 	;
 iteracion:
 	it_cota_fija {
 
-		}
+	}
 	| it_cota_exp {
 
-		}
+	}
 	;
 it_cota_exp:
 	mientrasTK expresion hacerTK instrucciones finMientrasTK {
 
-		}
+	}
 	;
 it_cota_fija:
 	paraTK identificadorTK igualAsignacionTK expresion hastaTK expresion hacerTK instrucciones finParaTK {
 
-		}
+	}
 	;
 
 accion_d:
 	accionTK a_cabecera bloque finAccionTK {
 
-		}
+	}
 	;
 funcion_d:
 	funcionTK f_cabecera bloque devuelveTK expresion finFuncionTK {
 
-		}
+	}
 	;
 a_cabecera:
 	identificadorTK parentesisAperturaTK d_par_form parentesisCierreTK puntoYComaTK {
 
-		}
+	}
 	;
 f_cabecera:
 	identificadorTK parentesisAperturaTK lista_d_var parentesisCierreTK devuelveTK d_tipo puntoYComaTK {
 
-		}
+	}
 	;
 d_par_form:
 	d_p_form puntoYComaTK d_par_form {
 
-		}
+	}
 	|
 	;
 d_p_form:
 	entradaTK lista_id definicionTipoVariableTK d_tipo {
 
-		}
+	}
 	| salidaTK lista_id definicionTipoVariableTK d_tipo {
 
-		}
+	}
 	| entradaSalidaTK lista_id definicionTipoVariableTK d_tipo {
 
-		}
+	}
 	;
 
 accion_ll:
 	identificadorTK parentesisAperturaTK l_ll parentesisCierreTK {
 
-		}
+	}
 	;
 funcion_ll:
 	identificadorTK parentesisAperturaTK l_ll parentesisCierreTK {

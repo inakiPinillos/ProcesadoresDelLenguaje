@@ -9,4 +9,5 @@ typedef enum nombreDeTipoT {
 	REAL
 } NombreDeTipoT;
 
+const char* nombreDeTipoToString(NombreDeTipoT);
 #endif

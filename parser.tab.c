@@ -625,12 +625,12 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   155,   155,   159,   164,   168,   171,   174,   178,   181,
-     184,   187,   192,   195,   198,   201,   207,   212,   217,   224,
-     227,   230,   233,   236,   239,   242,   245,   248,   251,   254,
-     257,   262,   265,   270,   273,   278,   281,   284,   287,   290,
-     293,   298,   303,   306,   314,   321,   324,   327,   332,   337,
-     343,   346,   349,   354,   368,   370,   373,   376,   379,   382,
+       0,   155,   155,   159,   163,   167,   170,   173,   177,   180,
+     183,   186,   191,   194,   197,   200,   206,   211,   216,   223,
+     226,   229,   232,   235,   238,   241,   244,   247,   250,   253,
+     256,   261,   264,   269,   272,   277,   280,   283,   286,   289,
+     292,   297,   302,   305,   313,   320,   323,   326,   331,   336,
+     342,   345,   348,   353,   367,   370,   373,   376,   379,   382,
      387,   390,   393,   396,   399,   402,   408,   412,   415,   418,
      424,   430,   433,   438,   441,   444,   447,   450,   455,   460,
      465,   468,   471,   474,   479,   484,   490,   495,   500,   505,
@@ -1360,285 +1360,284 @@ yyreduce:
   case 2: /* desc_algoritmo: algoritmoTK identificadorTK puntoYComaTK cabecera_alg bloque_alg finAlgoritmoTK puntoTK  */
 #line 155 "parser.y"
                                                                                                {
-			}
+	}
 #line 1365 "parser.tab.c"
     break;
 
   case 3: /* cabecera_alg: decl_globales decl_a_f decl_ent_sal precondicionTK  */
 #line 159 "parser.y"
                                                           {
-
-			}
-#line 1373 "parser.tab.c"
+	}
+#line 1372 "parser.tab.c"
     break;
 
   case 4: /* bloque_alg: bloque postCondicionTK  */
-#line 164 "parser.y"
+#line 163 "parser.y"
                               {
-			}
-#line 1380 "parser.tab.c"
+	}
+#line 1379 "parser.tab.c"
     break;
 
   case 5: /* decl_globales: declaracion_tipo decl_globales  */
-#line 168 "parser.y"
+#line 167 "parser.y"
                                        {
 
-		}
-#line 1388 "parser.tab.c"
+	}
+#line 1387 "parser.tab.c"
     break;
 
   case 6: /* decl_globales: declaracion_const decl_globales  */
-#line 171 "parser.y"
+#line 170 "parser.y"
                                           {
 
-		}
-#line 1396 "parser.tab.c"
+	}
+#line 1395 "parser.tab.c"
     break;
 
   case 8: /* decl_a_f: accion_d decl_a_f  */
-#line 178 "parser.y"
+#line 177 "parser.y"
                           {
 
-		}
-#line 1404 "parser.tab.c"
+	}
+#line 1403 "parser.tab.c"
     break;
 
   case 9: /* decl_a_f: funcion_d decl_a_f  */
-#line 181 "parser.y"
+#line 180 "parser.y"
                              {
 
-		}
-#line 1412 "parser.tab.c"
+	}
+#line 1411 "parser.tab.c"
     break;
 
   case 11: /* bloque: declaraciones instrucciones  */
-#line 187 "parser.y"
+#line 186 "parser.y"
                                     {
 
-		}
-#line 1420 "parser.tab.c"
+	}
+#line 1419 "parser.tab.c"
     break;
 
   case 12: /* declaraciones: declaracion_tipo declaraciones  */
-#line 192 "parser.y"
+#line 191 "parser.y"
                                        {
 
-		}
-#line 1428 "parser.tab.c"
+	}
+#line 1427 "parser.tab.c"
     break;
 
   case 13: /* declaraciones: declaracion_const declaraciones  */
-#line 195 "parser.y"
+#line 194 "parser.y"
                                           {
 
-		}
-#line 1436 "parser.tab.c"
+	}
+#line 1435 "parser.tab.c"
     break;
 
   case 14: /* declaraciones: declaracion_var declaraciones  */
-#line 198 "parser.y"
+#line 197 "parser.y"
                                         {
 
-		}
-#line 1444 "parser.tab.c"
+	}
+#line 1443 "parser.tab.c"
     break;
 
   case 16: /* declaracion_tipo: tipoTK lista_d_tipo finTipoTK puntoYComaTK  */
-#line 207 "parser.y"
+#line 206 "parser.y"
                                                    {
 
-		}
-#line 1452 "parser.tab.c"
+	}
+#line 1451 "parser.tab.c"
     break;
 
   case 17: /* declaracion_const: constTK lista_d_cte finConstTK puntoYComaTK  */
-#line 212 "parser.y"
+#line 211 "parser.y"
                                                     {
-			printf("COMPILADOR: Se ha creado la tabla de constantes con %d constantes\n", (yyvsp[-2].entero));
-		}
-#line 1460 "parser.tab.c"
+
+	}
+#line 1459 "parser.tab.c"
     break;
 
   case 18: /* declaracion_var: varTK lista_d_var finVarTK puntoYComaTK  */
-#line 217 "parser.y"
+#line 216 "parser.y"
                                                 {
 			
-		}
-#line 1468 "parser.tab.c"
+	}
+#line 1467 "parser.tab.c"
     break;
 
   case 19: /* lista_d_tipo: identificadorTK signoIgualTK d_tipo puntoYComaTK lista_d_tipo  */
-#line 224 "parser.y"
+#line 223 "parser.y"
                                                                       {
 
-		}
-#line 1476 "parser.tab.c"
+	}
+#line 1475 "parser.tab.c"
     break;
 
   case 21: /* d_tipo: tuplaTK lista_campos finTuplaTK  */
-#line 230 "parser.y"
+#line 229 "parser.y"
                                         {
 
-		}
-#line 1484 "parser.tab.c"
+	}
+#line 1483 "parser.tab.c"
     break;
 
   case 22: /* d_tipo: tablaTK inicioArrayTK expresion_t subrangoTK expresion_t finalArrayTK deTK d_tipo  */
-#line 233 "parser.y"
+#line 232 "parser.y"
                                                                                             {
 
-		}
-#line 1492 "parser.tab.c"
+	}
+#line 1491 "parser.tab.c"
     break;
 
   case 23: /* d_tipo: identificadorTK  */
-#line 236 "parser.y"
+#line 235 "parser.y"
                           {
 
-		}
-#line 1500 "parser.tab.c"
+	}
+#line 1499 "parser.tab.c"
     break;
 
   case 24: /* d_tipo: expresion_t subrangoTK expresion_t  */
-#line 239 "parser.y"
+#line 238 "parser.y"
                                              {
 
-		}
-#line 1508 "parser.tab.c"
+	}
+#line 1507 "parser.tab.c"
     break;
 
   case 25: /* d_tipo: refTK d_tipo  */
-#line 242 "parser.y"
+#line 241 "parser.y"
                        {
 
-		}
-#line 1516 "parser.tab.c"
+	}
+#line 1515 "parser.tab.c"
     break;
 
   case 26: /* d_tipo: enteroTK  */
-#line 245 "parser.y"
+#line 244 "parser.y"
                    {
-			(yyval.tipo) = ENTERO;
-		}
-#line 1524 "parser.tab.c"
+		(yyval.tipo) = ENTERO;
+	}
+#line 1523 "parser.tab.c"
     break;
 
   case 27: /* d_tipo: booleanoTK  */
-#line 248 "parser.y"
+#line 247 "parser.y"
                      {
-			(yyval.tipo) = BOOLEANO;
-		}
-#line 1532 "parser.tab.c"
+		(yyval.tipo) = BOOLEANO;
+	}
+#line 1531 "parser.tab.c"
     break;
 
   case 28: /* d_tipo: realTK  */
-#line 251 "parser.y"
+#line 250 "parser.y"
                  {
-			(yyval.tipo) = REAL;
-		}
-#line 1540 "parser.tab.c"
+		(yyval.tipo) = REAL;
+	}
+#line 1539 "parser.tab.c"
     break;
 
   case 29: /* d_tipo: cadenaTK  */
-#line 254 "parser.y"
+#line 253 "parser.y"
                    {
-			(yyval.tipo) = CADENA;
-		}
-#line 1548 "parser.tab.c"
+		(yyval.tipo) = CADENA;
+	}
+#line 1547 "parser.tab.c"
     break;
 
   case 30: /* d_tipo: caracterTK  */
-#line 257 "parser.y"
+#line 256 "parser.y"
                      {
-			(yyval.tipo) = CARACTER;
-		}
-#line 1556 "parser.tab.c"
+		(yyval.tipo) = CARACTER;
+	}
+#line 1555 "parser.tab.c"
     break;
 
   case 31: /* expresion_t: expresion  */
-#line 262 "parser.y"
+#line 261 "parser.y"
                   {
 
-		}
-#line 1564 "parser.tab.c"
+	}
+#line 1563 "parser.tab.c"
     break;
 
   case 32: /* expresion_t: literalCaracterTK  */
-#line 265 "parser.y"
+#line 264 "parser.y"
                             {
 
-		}
-#line 1572 "parser.tab.c"
+	}
+#line 1571 "parser.tab.c"
     break;
 
   case 33: /* lista_campos: identificadorTK definicionTipoVariableTK d_tipo puntoYComaTK lista_campos  */
-#line 270 "parser.y"
+#line 269 "parser.y"
                                                                                   {
 
-		}
-#line 1580 "parser.tab.c"
+	}
+#line 1579 "parser.tab.c"
     break;
 
   case 35: /* lista_d_cte: nombreConstanteTK signoIgualTK literalCaracterTK puntoYComaTK lista_d_cte  */
-#line 278 "parser.y"
+#line 277 "parser.y"
                                                                                   {
 
-		}
-#line 1588 "parser.tab.c"
+	}
+#line 1587 "parser.tab.c"
     break;
 
   case 36: /* lista_d_cte: nombreConstanteTK signoIgualTK literalCadenaTK puntoYComaTK lista_d_cte  */
-#line 281 "parser.y"
+#line 280 "parser.y"
                                                                                   {
 
-		}
-#line 1596 "parser.tab.c"
+	}
+#line 1595 "parser.tab.c"
     break;
 
   case 37: /* lista_d_cte: nombreConstanteTK signoIgualTK literalEnteroTK puntoYComaTK lista_d_cte  */
-#line 284 "parser.y"
+#line 283 "parser.y"
                                                                                   {
 
-		}
-#line 1604 "parser.tab.c"
+	}
+#line 1603 "parser.tab.c"
     break;
 
   case 38: /* lista_d_cte: nombreConstanteTK signoIgualTK literalRealTK puntoYComaTK lista_d_cte  */
-#line 287 "parser.y"
+#line 286 "parser.y"
                                                                                 {
 
-		}
-#line 1612 "parser.tab.c"
+	}
+#line 1611 "parser.tab.c"
     break;
 
   case 39: /* lista_d_cte: nombreConstanteTK signoIgualTK literalBooleanoTK puntoYComaTK lista_d_cte  */
-#line 290 "parser.y"
+#line 289 "parser.y"
                                                                                     {
 
-		}
-#line 1620 "parser.tab.c"
+	}
+#line 1619 "parser.tab.c"
     break;
 
   case 40: /* lista_d_cte: %empty  */
-#line 293 "parser.y"
+#line 292 "parser.y"
           {
 
 	}
-#line 1628 "parser.tab.c"
+#line 1627 "parser.tab.c"
     break;
 
   case 41: /* lista_d_var: lista_id definicionTipoVariableTK d_tipo puntoYComaTK lista_d_var  */
-#line 298 "parser.y"
+#line 297 "parser.y"
                                                                           {
 		for (int i = 0; i < (yyvsp[-4].paraListaId).longitud; i++) {
 			agregarVariable((yyvsp[-4].paraListaId).nombres[i], (yyvsp[-2].tipo));
 		}
 	}
-#line 1638 "parser.tab.c"
+#line 1637 "parser.tab.c"
     break;
 
   case 43: /* lista_id: identificadorTK separadorTK lista_id  */
-#line 306 "parser.y"
+#line 305 "parser.y"
                                              {
 		for (int i = 0; i < (yyvsp[0].paraListaId).longitud; i++) {
 			(yyval.paraListaId).nombres[i] = (yyvsp[0].paraListaId).nombres[i];  
@@ -1646,84 +1645,84 @@ yyreduce:
 		(yyval.paraListaId).nombres[(yyvsp[0].paraListaId).longitud] = (yyvsp[-2].cadena); 
 		(yyval.paraListaId).longitud = (yyvsp[0].paraListaId).longitud + 1;
     }
-#line 1650 "parser.tab.c"
+#line 1649 "parser.tab.c"
     break;
 
   case 44: /* lista_id: identificadorTK  */
-#line 314 "parser.y"
+#line 313 "parser.y"
                         {
         (yyval.paraListaId).nombres[0] = (yyvsp[0].cadena);  
         (yyval.paraListaId).longitud = 1; 
 	}
-#line 1659 "parser.tab.c"
+#line 1658 "parser.tab.c"
     break;
 
   case 45: /* decl_ent_sal: decl_ent  */
-#line 321 "parser.y"
+#line 320 "parser.y"
                  {
 
-		}
-#line 1667 "parser.tab.c"
+	}
+#line 1666 "parser.tab.c"
     break;
 
   case 46: /* decl_ent_sal: decl_ent decl_sal  */
-#line 324 "parser.y"
+#line 323 "parser.y"
                             {
 
-		}
-#line 1675 "parser.tab.c"
+	}
+#line 1674 "parser.tab.c"
     break;
 
   case 47: /* decl_ent_sal: decl_sal  */
-#line 327 "parser.y"
+#line 326 "parser.y"
                    {
 
-		}
-#line 1683 "parser.tab.c"
+	}
+#line 1682 "parser.tab.c"
     break;
 
   case 48: /* decl_ent: entradaTK lista_d_var  */
-#line 332 "parser.y"
+#line 331 "parser.y"
                               {
 
-		}
-#line 1691 "parser.tab.c"
+	}
+#line 1690 "parser.tab.c"
     break;
 
   case 49: /* decl_sal: salidaTK lista_d_var  */
-#line 337 "parser.y"
+#line 336 "parser.y"
                              {
 
-		}
-#line 1699 "parser.tab.c"
+	}
+#line 1698 "parser.tab.c"
     break;
 
   case 50: /* expresion: exp_a  */
-#line 343 "parser.y"
+#line 342 "parser.y"
               {
 
-		}
-#line 1707 "parser.tab.c"
+	}
+#line 1706 "parser.tab.c"
     break;
 
   case 51: /* expresion: exp_b  */
-#line 346 "parser.y"
+#line 345 "parser.y"
                 {
 
-		}
-#line 1715 "parser.tab.c"
+	}
+#line 1714 "parser.tab.c"
     break;
 
   case 52: /* expresion: funcion_ll  */
-#line 349 "parser.y"
+#line 348 "parser.y"
                      {
 
-		}
-#line 1723 "parser.tab.c"
+	}
+#line 1722 "parser.tab.c"
     break;
 
   case 53: /* exp_a: exp_a operadoresSumaORestaTK exp_a  */
-#line 354 "parser.y"
+#line 353 "parser.y"
                                            {
 		infoVariable T = agregarTemporal();
 		(yyval.paraOperando).place = obtenerPos(T.nombre);
@@ -1737,14 +1736,15 @@ yyreduce:
 		}else{
 		}
 
-		}
-#line 1742 "parser.tab.c"
+	}
+#line 1741 "parser.tab.c"
     break;
 
   case 54: /* exp_a: exp_a operadoresMultiplicacionODivisionTK exp_a  */
-#line 368 "parser.y"
+#line 367 "parser.y"
                                                           {
-		}
+
+	}
 #line 1749 "parser.tab.c"
     break;
 
@@ -1752,15 +1752,15 @@ yyreduce:
 #line 370 "parser.y"
                                                         {
 
-		}
+	}
 #line 1757 "parser.tab.c"
     break;
 
   case 56: /* exp_a: operando  */
 #line 373 "parser.y"
                    {
-			(yyval.paraOperando) = (yyvsp[0].paraOperando);
-		}
+		(yyval.paraOperando) = (yyvsp[0].paraOperando);
+	}
 #line 1765 "parser.tab.c"
     break;
 
@@ -1768,7 +1768,7 @@ yyreduce:
 #line 376 "parser.y"
                         {
 
-		}
+	}
 #line 1773 "parser.tab.c"
     break;
 
@@ -1776,7 +1776,7 @@ yyreduce:
 #line 379 "parser.y"
                           {
 
-		}
+	}
 #line 1781 "parser.tab.c"
     break;
 
@@ -1784,7 +1784,7 @@ yyreduce:
 #line 382 "parser.y"
                                                        {
 
-		}
+	}
 #line 1789 "parser.tab.c"
     break;
 
@@ -1792,7 +1792,7 @@ yyreduce:
 #line 387 "parser.y"
                                           {
 
-		}
+	}
 #line 1797 "parser.tab.c"
     break;
 
@@ -1800,7 +1800,7 @@ yyreduce:
 #line 390 "parser.y"
                      {
 
-		}
+	}
 #line 1805 "parser.tab.c"
     break;
 
@@ -1808,7 +1808,7 @@ yyreduce:
 #line 393 "parser.y"
                      {
 
-		}
+	}
 #line 1813 "parser.tab.c"
     break;
 
@@ -1816,7 +1816,7 @@ yyreduce:
 #line 396 "parser.y"
                             {
 
-		}
+	}
 #line 1821 "parser.tab.c"
     break;
 
@@ -1824,7 +1824,7 @@ yyreduce:
 #line 399 "parser.y"
                                                       {
 
-		}
+	}
 #line 1829 "parser.tab.c"
     break;
 
@@ -1839,9 +1839,9 @@ yyreduce:
   case 66: /* operando: identificadorTK  */
 #line 408 "parser.y"
                         {
-			(yyval.paraOperando).place = obtenerPos((yyvsp[0].cadena));
-			(yyval.paraOperando).type = obtenerTipo((yyvsp[0].cadena));
-		}
+		(yyval.paraOperando).place = obtenerPos((yyvsp[0].cadena));
+		(yyval.paraOperando).type = obtenerTipo((yyvsp[0].cadena));
+	}
 #line 1846 "parser.tab.c"
     break;
 
@@ -1849,7 +1849,7 @@ yyreduce:
 #line 412 "parser.y"
                                     {
 
-		}
+	}
 #line 1854 "parser.tab.c"
     break;
 
@@ -1857,7 +1857,7 @@ yyreduce:
 #line 415 "parser.y"
                                                         {
 
-		}
+	}
 #line 1862 "parser.tab.c"
     break;
 
@@ -1865,7 +1865,7 @@ yyreduce:
 #line 418 "parser.y"
                          {
 
-		}
+	}
 #line 1870 "parser.tab.c"
     break;
 
@@ -1873,7 +1873,7 @@ yyreduce:
 #line 424 "parser.y"
                                 {
 
-		}
+	}
 #line 1878 "parser.tab.c"
     break;
 
@@ -1881,7 +1881,7 @@ yyreduce:
 #line 430 "parser.y"
                                                {
 
-		}
+	}
 #line 1886 "parser.tab.c"
     break;
 
@@ -1889,7 +1889,7 @@ yyreduce:
 #line 433 "parser.y"
                       {
 
-		}
+	}
 #line 1894 "parser.tab.c"
     break;
 
@@ -1897,7 +1897,7 @@ yyreduce:
 #line 438 "parser.y"
                     {
 
-		}
+	}
 #line 1902 "parser.tab.c"
     break;
 
@@ -1905,7 +1905,7 @@ yyreduce:
 #line 441 "parser.y"
                      {
 
-		}
+	}
 #line 1910 "parser.tab.c"
     break;
 
@@ -1913,7 +1913,7 @@ yyreduce:
 #line 444 "parser.y"
                       {
 
-		}
+	}
 #line 1918 "parser.tab.c"
     break;
 
@@ -1921,7 +1921,7 @@ yyreduce:
 #line 447 "parser.y"
                     {
 
-		}
+	}
 #line 1926 "parser.tab.c"
     break;
 
@@ -1929,7 +1929,7 @@ yyreduce:
 #line 450 "parser.y"
                     {
 
-		}
+	}
 #line 1934 "parser.tab.c"
     break;
 
@@ -1937,7 +1937,7 @@ yyreduce:
 #line 455 "parser.y"
                                              {
 
-		}
+	}
 #line 1942 "parser.tab.c"
     break;
 
@@ -1945,7 +1945,7 @@ yyreduce:
 #line 460 "parser.y"
                                                                        {
 
-		}
+	}
 #line 1950 "parser.tab.c"
     break;
 
@@ -1953,7 +1953,7 @@ yyreduce:
 #line 465 "parser.y"
                                                                    {
 
-		}
+	}
 #line 1958 "parser.tab.c"
     break;
 
@@ -1961,7 +1961,7 @@ yyreduce:
 #line 471 "parser.y"
                      {
 
-		}
+	}
 #line 1966 "parser.tab.c"
     break;
 
@@ -1969,7 +1969,7 @@ yyreduce:
 #line 474 "parser.y"
                       {
 
-		}
+	}
 #line 1974 "parser.tab.c"
     break;
 
@@ -1977,7 +1977,7 @@ yyreduce:
 #line 479 "parser.y"
                                                                  {
 
-		}
+	}
 #line 1982 "parser.tab.c"
     break;
 
@@ -1985,7 +1985,7 @@ yyreduce:
 #line 484 "parser.y"
                                                                                                              {
 
-		}
+	}
 #line 1990 "parser.tab.c"
     break;
 
@@ -1993,7 +1993,7 @@ yyreduce:
 #line 490 "parser.y"
                                                {
 
-		}
+	}
 #line 1998 "parser.tab.c"
     break;
 
@@ -2001,7 +2001,7 @@ yyreduce:
 #line 495 "parser.y"
                                                                       {
 
-		}
+	}
 #line 2006 "parser.tab.c"
     break;
 
@@ -2009,7 +2009,7 @@ yyreduce:
 #line 500 "parser.y"
                                                                                         {
 
-		}
+	}
 #line 2014 "parser.tab.c"
     break;
 
@@ -2017,7 +2017,7 @@ yyreduce:
 #line 505 "parser.y"
                                                                                                            {
 
-		}
+	}
 #line 2022 "parser.tab.c"
     break;
 
@@ -2025,7 +2025,7 @@ yyreduce:
 #line 510 "parser.y"
                                          {
 
-		}
+	}
 #line 2030 "parser.tab.c"
     break;
 
@@ -2033,7 +2033,7 @@ yyreduce:
 #line 516 "parser.y"
                                                            {
 
-		}
+	}
 #line 2038 "parser.tab.c"
     break;
 
@@ -2041,7 +2041,7 @@ yyreduce:
 #line 519 "parser.y"
                                                             {
 
-		}
+	}
 #line 2046 "parser.tab.c"
     break;
 
@@ -2049,7 +2049,7 @@ yyreduce:
 #line 522 "parser.y"
                                                                    {
 
-		}
+	}
 #line 2054 "parser.tab.c"
     break;
 
@@ -2057,7 +2057,7 @@ yyreduce:
 #line 528 "parser.y"
                                                                      {
 
-		}
+	}
 #line 2062 "parser.tab.c"
     break;
 

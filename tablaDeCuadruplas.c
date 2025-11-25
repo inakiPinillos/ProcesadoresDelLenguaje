@@ -34,10 +34,10 @@ void imprimirTablaCuadruplas(){
     printf("////////TABLA CUADRUPLAS////////\n");
     for (int i = 0; i < posCuadruplas; i++){
         printf("Operando 1, pos:%d y tipo:%s, operando 2: pos:%d y tipo:%s, operador: %s y resultado nombre:%s y tipo: %s\n",
-            tablaDeCuadruplas[i].operando1.place, nombreDeOperadorToString(tablaDeCuadruplas[i].operando1.type),
-            tablaDeCuadruplas[i].operando2.place, nombreDeOperadorToString(tablaDeCuadruplas[i].operando2.type),
+            tablaDeCuadruplas[i].operando1.place, nombreDeTipoToString(tablaDeCuadruplas[i].operando1.type),
+            tablaDeCuadruplas[i].operando2.place, nombreDeTipoToString(tablaDeCuadruplas[i].operando2.type),
             nombreDeOperadorToString(tablaDeCuadruplas[i].operador),
-            tablaDeCuadruplas[i].resultado.nombre, nombreDeOperadorToString(tablaDeCuadruplas[i].resultado.tipo)
+            tablaDeCuadruplas[i].resultado.nombre, nombreDeTipoToString(tablaDeCuadruplas[i].resultado.tipo)
         );
     }
 }

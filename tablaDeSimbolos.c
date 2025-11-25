@@ -4,16 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char* nombreDeTipoToString(NombreDeTipoT tipo) {
-    switch (tipo) {
-        case BOOLEANO: return "Booleano";
-        case CADENA: return "Cadena";
-        case CARACTER: return "Caracter";
-        case ENTERO: return "Entero";
-        case REAL: return "Real";
-    }
-}
-
 void agregarVariable(char *nombreVariable, NombreDeTipoT tipoVariable) {
     for (int i = 0; i < pos; i++){
         if (strcmp(nombreVariable, tablaDeSimbolos[i].nombre) == 0){

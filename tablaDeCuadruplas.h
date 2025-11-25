@@ -1,6 +1,7 @@
 #ifndef FFF_TABLA_DE_CUADRUPLAS_H
 #define FFF_TABLA_DE_CUADRUPLAS_H
 #include "tablaDeSimbolos.h"
+#include "nombresDeTipos.h"
 typedef enum nombreDeOperador {
 	SUMA_ENTERO,
 	SUMA_REAL,
@@ -16,7 +17,7 @@ typedef enum nombreDeOperador {
 
 typedef struct tipoOperando{
     int place;
-    NombreDeOperador type;
+    NombreDeTipoT type;
 } tipoOperando;
 
 typedef struct cuadrupla {
