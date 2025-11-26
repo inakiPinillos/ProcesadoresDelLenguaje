@@ -15,7 +15,14 @@ typedef enum nombreDeOperador {
     MOD_ENTERO,
     ENTERO_TO_REAL,
     REAL_TO_ENTERO,
-    ASIGNACION
+    ASIGNACION,
+    Y,
+    O,
+    NO,
+    MENOR,
+    MENOR_O_IGUAL,
+    MAYOR,
+    MAYOR_O_IGUAL
 } NombreDeOperador;
 
 #endif

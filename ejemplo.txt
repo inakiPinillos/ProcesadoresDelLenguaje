@@ -3,12 +3,10 @@ algoritmo intercambio;
 	sal a, c: entero;
 {Prec: a= A AND c = B}
 	var
-		aux, aux1, aux2: entero;	
-		aux3, aux4, aux5: real;
-		b: booleano;
+		b, b1, b2: booleano;
 	fvar;
-	aux:= a ;
-	aux:= aux3;
-	aux3:= a;
+	b:= b y b2;
+	b:= b o b2;
+	b:= no b2
 {Post: c=A AND a = B}
 falgoritmo.

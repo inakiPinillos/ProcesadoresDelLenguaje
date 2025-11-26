@@ -219,8 +219,8 @@ literalRealOP	{literalEnteroOP}[rR]
 	return noTK;
 }
 {operadoresBooleanosOP}	{
+	yylval.operador = yytext;
 	return operadoresBooleanosTK;
-	printf("%c\n", yytext[0]);
 }
 {operadoresSumaRestaOP}	{
 	yylval.operador = yytext;

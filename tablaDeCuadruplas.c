@@ -21,6 +21,13 @@ const char* nombreDeOperadorToString(NombreDeOperador tipo) {
         case ENTERO_TO_REAL: return "Tipo de entero a real";
         case REAL_TO_ENTERO: return "Tipo de real a entero";
         case ASIGNACION: return "Asignacion";
+        case Y: return "Y";
+        case O: return "O";
+        case NO: return "No";
+        case MENOR: return "Menor";
+        case MENOR_O_IGUAL: return "Menor o igual";
+        case MAYOR: return "Mayor";
+        case MAYOR_O_IGUAL: return "Mayor o igual";
     }
 }    
 
