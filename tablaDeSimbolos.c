@@ -8,7 +8,6 @@ void agregarVariable(char *nombreVariable, NombreDeTipoT tipoVariable) {
     for (int i = 0; i < pos; i++){
         if (strcmp(nombreVariable, tablaDeSimbolos[i].nombre) == 0){
             printf("ERROR: Nombre de variable %s ya insertado anteriormente\n", nombreVariable);
-            return;
         } 
     } 
     tablaDeSimbolos[pos].nombre = nombreVariable;

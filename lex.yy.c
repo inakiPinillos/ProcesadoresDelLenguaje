@@ -1844,13 +1844,15 @@ case 56:
 YY_RULE_SETUP
 #line 287 "scanner.l"
 {
-	return identificadorBooleanoTK;
-	printf("%s\n",  yytext);
+	if ((yylval.cadena = strdup(yytext)) == NULL )
+		errorEnScanner("No hay memoria para strdup() al leer %s\n", yytext);
+	else
+		return identificadorBooleanoTK;
 }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 291 "scanner.l"
+#line 293 "scanner.l"
 {
 	if ((yylval.cadena = strdup(yytext)) == NULL )
 		errorEnScanner("No hay memoria para strdup() al leer %s\n", yytext);
@@ -1860,7 +1862,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 297 "scanner.l"
+#line 299 "scanner.l"
 {
 	yylval.literal.tipoDelValor = CARACTER;
 	yylval.literal.valor.valorCaracter = yytext[1];
@@ -1869,7 +1871,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 302 "scanner.l"
+#line 304 "scanner.l"
 {
 	yylval.literal.tipoDelValor = CADENA;
 
@@ -1881,7 +1883,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 310 "scanner.l"
+#line 312 "scanner.l"
 {
 	yylval.literal.tipoDelValor = ENTERO;
 	yylval.literal.valor.valorEntero = atoi(yytext);
@@ -1891,7 +1893,7 @@ YY_RULE_SETUP
 case 61:
 /* rule 61 can match eol */
 YY_RULE_SETUP
-#line 315 "scanner.l"
+#line 317 "scanner.l"
 {
 	return precondicionTK;
 }
@@ -1899,21 +1901,21 @@ YY_RULE_SETUP
 case 62:
 /* rule 62 can match eol */
 YY_RULE_SETUP
-#line 318 "scanner.l"
+#line 320 "scanner.l"
 {
 	return postCondicionTK;
 }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 321 "scanner.l"
+#line 323 "scanner.l"
 {
 	return comentarioTK;
 }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 325 "scanner.l"
+#line 327 "scanner.l"
 {
 	yylval.literal.tipoDelValor = REAL;
 	yylval.literal.valor.valorReal = atof(yytext);
@@ -1922,7 +1924,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 330 "scanner.l"
+#line 332 "scanner.l"
 {
 	char * cadena;
 	yylval.literal.tipoDelValor = REAL;
@@ -1937,7 +1939,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 341 "scanner.l"
+#line 343 "scanner.l"
 {
 	yylval.cadena = strdup(yytext);
 	return nombreConstanteTK;
@@ -1945,16 +1947,16 @@ YY_RULE_SETUP
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 347 "scanner.l"
+#line 349 "scanner.l"
 { //Permite que el resto de caracteres no hagan echo
 }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 351 "scanner.l"
+#line 353 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 1958 "lex.yy.c"
+#line 1960 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2959,7 +2961,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 351 "scanner.l"
+#line 353 "scanner.l"
 
 
  //PARTE 3: CODIGO ADICIONAL

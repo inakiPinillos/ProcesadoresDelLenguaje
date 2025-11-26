@@ -284,8 +284,10 @@ literalRealOP	{literalEnteroOP}[rR]
 
 
 {identificadorBooleanoOP}	{
-	return identificadorBooleanoTK;
-	printf("%s\n",  yytext);
+	if ((yylval.cadena = strdup(yytext)) == NULL )
+		errorEnScanner("No hay memoria para strdup() al leer %s\n", yytext);
+	else
+		return identificadorBooleanoTK;
 }
 {identificadorOP}	{
 	if ((yylval.cadena = strdup(yytext)) == NULL )

@@ -149,6 +149,7 @@
 %type <paraListaId> lista_id
 %type <tipo> d_tipo
 %type <paraOperando> operando
+%type <paraOperando> operando_b
 %type <paraOperando> exp_a
 %type <paraOperando> expresion
 %%
@@ -313,6 +314,19 @@ lista_id:
     }	
 	|
 	identificadorTK {
+        $$.nombres[0] = $1;  
+        $$.longitud = 1; 
+	}
+	|
+	identificadorBooleanoTK separadorTK lista_id {
+		for (int i = 0; i < $3.longitud; i++) {
+			$$.nombres[i] = $3.nombres[i];  
+		} 
+		$$.nombres[$3.longitud] = $1; 
+		$$.longitud = $3.longitud + 1;
+    }	
+	|
+	identificadorBooleanoTK {
         $$.nombres[0] = $1;  
         $$.longitud = 1; 
 	}
@@ -528,7 +542,7 @@ exp_a:
 
 	}
 	| operadoresSumaORestaTK exp_a %prec UPLUSMINUS{
-
+		$$ = $2;
 	}
 	;
 exp_b:
@@ -570,7 +584,8 @@ operando:
 
 operando_b:
 	identificadorBooleanoTK {
-
+		$$.place = obtenerPos($1);
+		$$.type = obtenerTipo($1);
 	}
 	;
 
@@ -603,10 +618,34 @@ asignacion:
 	operando igualAsignacionTK expresion {
 		if ($1.type == $3.type) {
 			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
-			infoVariable operandoNuevo = { .place = obtenerPos($3.nombre), .type = $3.tipo }; 
-			gen($1, opNulo, ASIGNACION, operandoNuevo);
+			infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
+			gen($3, opNulo, ASIGNACION, operandoNuevo);
 		} else if ($1.type == REAL && $3.type == ENTERO) {
+			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
 
+			infoVariable T2 = agregarTemporal();
+			actualizarTipoTemporal(T2, REAL);
+			T2.tipo = REAL;
+
+			gen($3, opNulo, ENTERO_TO_REAL, T2);
+			infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
+
+			tipoOperando operandoNuevo2 = { .place = obtenerPos(T2.nombre), .type = T2.tipo};
+
+			gen(operandoNuevo2, opNulo, ASIGNACION, operandoNuevo);
+		} else if ($1.type == ENTERO && $3.type == REAL ) {
+			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+
+			infoVariable T2 = agregarTemporal();
+			actualizarTipoTemporal(T2, ENTERO);
+			T2.tipo = ENTERO;
+
+			gen($3, opNulo, REAL_TO_ENTERO, T2);
+			infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
+
+			tipoOperando operandoNuevo2 = { .place = obtenerPos(T2.nombre), .type = T2.tipo};
+
+			gen(operandoNuevo2, opNulo, ASIGNACION, operandoNuevo);
 		}
 	}
 	| 	operando_b igualAsignacionTK exp_b {

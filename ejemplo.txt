@@ -5,7 +5,10 @@ algoritmo intercambio;
 	var
 		aux, aux1, aux2: entero;	
 		aux3, aux4, aux5: real;
+		b: booleano;
 	fvar;
-	aux:= a div c;
+	aux:= a ;
+	aux:= aux3;
+	aux3:= a;
 {Post: c=A AND a = B}
 falgoritmo.
