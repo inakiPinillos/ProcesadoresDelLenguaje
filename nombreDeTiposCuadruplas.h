@@ -12,10 +12,10 @@ typedef enum nombreDeOperador {
     DIV_ENTERA_REALES,
     DIV_REAL_ENTEROS,
     DIV_REAL_REALES,
-    MOD_REAL,
     MOD_ENTERO,
     ENTERO_TO_REAL,
-    REAL_TO_ENTERO
+    REAL_TO_ENTERO,
+    ASIGNACION
 } NombreDeOperador;
 
 #endif

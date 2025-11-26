@@ -4,15 +4,8 @@ algoritmo intercambio;
 {Prec: a= A AND c = B}
 	var
 		aux, aux1, aux2: entero;	
-		aux3, aux3, aux4, aux5: real;
+		aux3, aux4, aux5: real;
 	fvar;
-	aux:= a + c;
-	aux:= a - c;
 	aux:= a div c;
-	aux:= a / c;
-	aux:= a mod c;
-	aux:= a * c;
-	a:= c;
-	c:= aux
 {Post: c=A AND a = B}
 falgoritmo.

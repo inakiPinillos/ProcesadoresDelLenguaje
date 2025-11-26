@@ -11,5 +11,6 @@ const char* nombreDeTipoToString(NombreDeTipoT tipo) {
         case CARACTER: return "Caracter";
         case ENTERO: return "Entero";
         case REAL: return "Real";
+        case TIPO_NULO: return "Nulo";
     }
 }

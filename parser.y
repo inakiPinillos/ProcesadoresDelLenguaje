@@ -150,6 +150,7 @@
 %type <tipo> d_tipo
 %type <paraOperando> operando
 %type <paraOperando> exp_a
+%type <paraOperando> expresion
 %%
 
 desc_algoritmo: 
@@ -341,7 +342,7 @@ decl_sal:
 
 expresion:
 	exp_a {
-
+		$$ = $1;
 	}
 	| exp_b {
 
@@ -354,23 +355,67 @@ exp_a:
 	exp_a operadoresSumaORestaTK exp_a {
 		infoVariable T = agregarTemporal();
 		$$.place = obtenerPos(T.nombre);
-		if (strstr($2, "+") != NULL)
-		{
-			if ($1.type == ENTERO && $3.type == ENTERO) {
-				actualizarTipoTemporal(T, ENTERO);
-				T.tipo = ENTERO;
+		if ($1.type == ENTERO && $3.type == ENTERO) {
+			actualizarTipoTemporal(T, ENTERO);
+			T.tipo = ENTERO;
+			$$.type = ENTERO;
+			if (strstr($2, "+") != NULL)
+			{
 				gen($1, $3, SUMA_ENTERO, T);
-				$$.type = ENTERO;
-			}
-		} else if (strstr($2, "-") != NULL) {
-			if ($1.type == ENTERO && $3.type == ENTERO) {
-				actualizarTipoTemporal(T, ENTERO);
-				T.tipo = ENTERO;
+			} else if (strstr($2, "-") != NULL) {
 				gen($1, $3, RESTA_ENTERO, T);
-				$$.type = ENTERO;
+			}
+		} else if ($1.type == ENTERO && $3.type == REAL) {
+			actualizarTipoTemporal(T, REAL);
+			T.tipo = REAL;
+			$$.type = REAL;
+
+			infoVariable T2 = agregarTemporal();
+			actualizarTipoTemporal(T2, REAL);
+			T2.tipo = REAL;
+
+			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+			gen($1, opNulo, ENTERO_TO_REAL, T2);
+
+			tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+
+			if (strstr($2, "+") != NULL)
+			{
+				gen(operandoNuevo, $3, SUMA_REAL, T);
+			} else if (strstr($2, "-") != NULL) {
+				gen(operandoNuevo, $3, RESTA_REAL, T);
+			}
+		} else if ($1.type == REAL && $3.type == ENTERO) {
+			actualizarTipoTemporal(T, REAL);
+			T.tipo = REAL;
+			$$.type = REAL;
+
+			infoVariable T2 = agregarTemporal();
+			actualizarTipoTemporal(T2, REAL);
+			T2.tipo = REAL;
+
+			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+			gen($3, opNulo, ENTERO_TO_REAL, T2);
+
+			tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+
+			if (strstr($2, "+") != NULL)
+			{
+				gen($1, operandoNuevo, SUMA_REAL, T);
+			} else if (strstr($2, "-") != NULL) {
+				gen($3, operandoNuevo, RESTA_REAL, T);
+			}
+		} else if ($1.type == REAL && $3.type == REAL) {
+			actualizarTipoTemporal(T, REAL);
+			T.tipo = REAL;
+			$$.type = REAL;
+			if (strstr($2, "+") != NULL)
+			{
+				gen($1, $3, SUMA_REAL, T);
+			} else if (strstr($2, "-") != NULL) {
+				gen($1, $3, RESTA_REAL, T);
 			}
 		}
-
 	}
 	| exp_a operadoresMultiplicacionODivisionTK exp_a {
 		infoVariable T = agregarTemporal();
@@ -383,12 +428,71 @@ exp_a:
 				gen($1, $3, MULT_ENTERO, T);
 				$$.type = ENTERO;
 			}
-		} else if (strstr($2, "/") != NULL) {
-			if ($1.type == ENTERO && $3.type == ENTERO) {
+			else if($1.type == ENTERO && $3.type == REAL){
+				actualizarTipoTemporal(T, REAL);
+				T.tipo = REAL;
+				infoVariable T2 = agregarTemporal();
+				actualizarTipoTemporal(T2, REAL);
+				T2.tipo = REAL;
+				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO };
+				gen($1, opNulo, ENTERO_TO_REAL, T2);
+
+				tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+				gen(operandoNuevo, $3, MULT_REAL, T);
+				$$.type = REAL;
+
+			}
+			else if($1.type == REAL && $3.type == ENTERO){
 				actualizarTipoTemporal(T, ENTERO);
 				T.tipo = ENTERO;
-				gen($1, $3, DIV_REAL_ENTEROS, T);
+				infoVariable T3 = agregarTemporal();
+				actualizarTipoTemporal(T3, ENTERO);
+				T3.tipo = ENTERO;
+				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO };
+				gen($1, opNulo, REAL_TO_ENTERO, T3);
+
+				tipoOperando operandoNuevo = { .place = obtenerPos(T3.nombre), .type = T3.tipo };
+				gen(operandoNuevo, $3, REAL_TO_ENTERO, T);
 				$$.type = ENTERO;
+
+			}
+			else if ($1.type == REAL && $3.type == REAL) {
+				actualizarTipoTemporal(T, REAL);
+				T.tipo = REAL;
+				gen($1, $3, MULT_REAL, T);
+				$$.type = REAL;
+			}
+		} else if (strstr($2, "/") != NULL) {
+			actualizarTipoTemporal(T, REAL);
+			T.tipo = REAL;
+			$$.type = REAL;
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				gen($1, $3, DIV_REAL_ENTEROS, T);
+			} else if ($1.type == ENTERO && $3.type == REAL) {
+				infoVariable T2 = agregarTemporal();
+				actualizarTipoTemporal(T2, REAL);
+				T2.tipo = REAL;
+
+				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+				gen($1, opNulo, ENTERO_TO_REAL, T2);
+
+				tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+
+				gen(operandoNuevo, $3, DIV_REAL_REALES, T);
+			} else if ($1.type == REAL && $3.type == ENTERO) {
+				infoVariable T2 = agregarTemporal();
+				actualizarTipoTemporal(T2, REAL);
+				T2.tipo = REAL;
+
+				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+				gen($3, opNulo, ENTERO_TO_REAL, T2);
+
+				tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+
+				gen($1, operandoNuevo, DIV_REAL_REALES, T);
+
+			} else if ($1.type == REAL && $3.type == REAL) {
+				gen($1, $3, DIV_REAL_REALES, T);
 			}
 		} else if (strstr($2, "div") != NULL) {
 			if ($1.type == ENTERO && $3.type == ENTERO) {
@@ -396,6 +500,8 @@ exp_a:
 				T.tipo = ENTERO;
 				gen($1, $3, DIV_ENTERA_ENTEROS, T);
 				$$.type = ENTERO;
+			} else {
+				yyerror("En mod solo se pueden dividir enteros\n");
 			}
 		} else if (strstr($2, "mod") != NULL) {
 			if ($1.type == ENTERO && $3.type == ENTERO) {
@@ -403,11 +509,14 @@ exp_a:
 				T.tipo = ENTERO;
 				gen($1, $3, MOD_ENTERO, T);
 				$$.type = ENTERO;
+			} else {
+				yyerror("En mod solo se pueden dividir enteros\n");
 			}
 		}
 	}
 	| parentesisAperturaTK exp_a parentesisCierreTK {
-
+		$$.place = $2.place;
+		$$.type = $2.type;
 	}
 	| operando {
 		$$ = $1;
@@ -492,6 +601,15 @@ instruccion:
 	;
 asignacion:
 	operando igualAsignacionTK expresion {
+		if ($1.type == $3.type) {
+			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+			infoVariable operandoNuevo = { .place = obtenerPos($3.nombre), .type = $3.tipo }; 
+			gen($1, opNulo, ASIGNACION, operandoNuevo);
+		} else if ($1.type == REAL && $3.type == ENTERO) {
+
+		}
+	}
+	| 	operando_b igualAsignacionTK exp_b {
 
 	}
 	;

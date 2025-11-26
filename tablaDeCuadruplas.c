@@ -17,11 +17,10 @@ const char* nombreDeOperadorToString(NombreDeOperador tipo) {
         case DIV_ENTERA_REALES: return "División entera de reales";
         case DIV_REAL_ENTEROS: return "División real de enteros";
         case DIV_REAL_REALES: return "División real de reales";
-        case MOD_REAL: return "Módulo de enteros";
-        case MOD_ENTERO: return "Módulo de reales";
+        case MOD_ENTERO: return "Módulo de enteros";
         case ENTERO_TO_REAL: return "Tipo de entero a real";
         case REAL_TO_ENTERO: return "Tipo de real a entero";
-
+        case ASIGNACION: return "Asignacion";
     }
 }    
 
