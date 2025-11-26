@@ -2,18 +2,7 @@
 #define FFF_TABLA_DE_CUADRUPLAS_H
 #include "tablaDeSimbolos.h"
 #include "nombresDeTipos.h"
-typedef enum nombreDeOperador {
-	SUMA_ENTERO,
-	SUMA_REAL,
-	RESTA_ENTERO,
-	RESTA_REAL,
-	MULT_ENTERO,
-    MULT_REAL,
-    DIV_ENTERO,
-    DIV_REAL,
-    ENTERO_TO_REAL,
-    REAL_TO_ENTERO
-} NombreDeOperador;
+#include "nombreDeTiposCuadruplas.h"
 
 typedef struct tipoOperando{
     int place;

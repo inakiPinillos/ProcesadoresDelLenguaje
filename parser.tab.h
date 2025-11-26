@@ -45,7 +45,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 126 "parser.y"
+#line 127 "parser.y"
 
 	#include "tablaDeCuadruplas.h"
 	typedef struct listadoIds{ 
@@ -139,10 +139,10 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 135 "parser.y"
+#line 136 "parser.y"
 
 	char* cadena;
-	char operador;
+	char* operador;
 	LiteralT literal;
 	int entero;
 	NombreDeTipoT tipo;

@@ -1143,8 +1143,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scannerVFinal.l"
-#line 2 "scannerVFinal.l"
+#line 1 "scanner.l"
+#line 2 "scanner.l"
  //Para poder probar el ejemplo debe:
  //1-Usar flex ejecutando flex scannerBeta.l
  //2-Compilar el fichero generado por flex con la opcion -lfl (-ll en OSx)
@@ -1165,7 +1165,7 @@ char *yytext;
 	void errorEnScanner(char*, char*); //prototipo necesario para compilar
 	
 #line 1168 "lex.yy.c"
-#line 26 "scannerVFinal.l"
+#line 26 "scanner.l"
  // PARTE 1.2: Zona de definiciones regulares 
 #line 1171 "lex.yy.c"
 
@@ -1384,7 +1384,7 @@ YY_DECL
 		}
 
 	{
-#line 100 "scannerVFinal.l"
+#line 100 "scanner.l"
 
 
  //PARTE 2: Reglas
@@ -1448,267 +1448,267 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 104 "scannerVFinal.l"
+#line 104 "scanner.l"
 {
 	return cadenaTK;
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 107 "scannerVFinal.l"
+#line 107 "scanner.l"
 {
 	return caracterTK;
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 110 "scannerVFinal.l"
+#line 110 "scanner.l"
 {
 	return enteroTK;
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 113 "scannerVFinal.l"
+#line 113 "scanner.l"
 {
 	return booleanoTK;
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 116 "scannerVFinal.l"
+#line 116 "scanner.l"
 {
 	return realTK;
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 119 "scannerVFinal.l"
+#line 119 "scanner.l"
 {
 	return accionTK;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 122 "scannerVFinal.l"
+#line 122 "scanner.l"
 {
 	return algoritmoTK;
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 125 "scannerVFinal.l"
+#line 125 "scanner.l"
 {
 	return funcionTK;
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 128 "scannerVFinal.l"
+#line 128 "scanner.l"
 {
 	return tipoTK;
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 131 "scannerVFinal.l"
+#line 131 "scanner.l"
 {
 	return varTK;
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 134 "scannerVFinal.l"
+#line 134 "scanner.l"
 {
 	return tuplaTK;
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 137 "scannerVFinal.l"
+#line 137 "scanner.l"
 {
 	return constTK;
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 140 "scannerVFinal.l"
+#line 140 "scanner.l"
 {
 	return refTK;
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 143 "scannerVFinal.l"
+#line 143 "scanner.l"
 {
 	return tablaTK;
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 146 "scannerVFinal.l"
+#line 146 "scanner.l"
 {
 	return deTK;
 }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 149 "scannerVFinal.l"
+#line 149 "scanner.l"
 {
 	return finAccionTK;
 }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 152 "scannerVFinal.l"
+#line 152 "scanner.l"
 {
 	return finAlgoritmoTK;
 }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 155 "scannerVFinal.l"
+#line 155 "scanner.l"
 {
 	return finFuncionTK;
 }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 158 "scannerVFinal.l"
+#line 158 "scanner.l"
 {
 	return finTipoTK;
 }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 161 "scannerVFinal.l"
+#line 161 "scanner.l"
 {
 	return finVarTK;
 }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 164 "scannerVFinal.l"
+#line 164 "scanner.l"
 {
 	return finTuplaTK;
 }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 167 "scannerVFinal.l"
+#line 167 "scanner.l"
 {
 	return finConstTK;
 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 172 "scannerVFinal.l"
+#line 172 "scanner.l"
 {
 	return mientrasTK;
 }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 175 "scannerVFinal.l"
+#line 175 "scanner.l"
 {
 	return siTK;
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 178 "scannerVFinal.l"
+#line 178 "scanner.l"
 {
 	return paraTK;
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 181 "scannerVFinal.l"
+#line 181 "scanner.l"
 {
 	return hacerTK;
 }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 184 "scannerVFinal.l"
+#line 184 "scanner.l"
 {
 	return hastaTK;
 }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 187 "scannerVFinal.l"
+#line 187 "scanner.l"
 {
 	return continuarTK;
 }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 190 "scannerVFinal.l"
+#line 190 "scanner.l"
 {
 	return finMientrasTK;
 }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 193 "scannerVFinal.l"
+#line 193 "scanner.l"
 {
 	return finSiTK;
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 196 "scannerVFinal.l"
+#line 196 "scanner.l"
 {
 	return finParaTK;
 }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 200 "scannerVFinal.l"
+#line 200 "scanner.l"
 {
 	return entradaTK;
 }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 203 "scannerVFinal.l"
+#line 203 "scanner.l"
 {
 	return entradaSalidaTK;
 }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 206 "scannerVFinal.l"
+#line 206 "scanner.l"
 {
 	return salidaTK;
 }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 209 "scannerVFinal.l"
+#line 209 "scanner.l"
 {
 	return devuelveTK;
 }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 215 "scannerVFinal.l"
+#line 215 "scanner.l"
 {
+	yylval.operador = yytext;
 	return operadoresMultiplicacionODivisionTK;
-	printf("%s\n", yytext);
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 219 "scannerVFinal.l"
+#line 219 "scanner.l"
 {
 	return noTK;
 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 222 "scannerVFinal.l"
+#line 222 "scanner.l"
 {
 	return operadoresBooleanosTK;
 	printf("%c\n", yytext[0]);
@@ -1716,29 +1716,29 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 226 "scannerVFinal.l"
+#line 226 "scanner.l"
 {
-	yylval.operador = yytext[0];
+	yylval.operador = yytext;
 	return operadoresSumaORestaTK;
 }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 230 "scannerVFinal.l"
+#line 230 "scanner.l"
 {
 	return parentesisAperturaTK;
 }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 233 "scannerVFinal.l"
+#line 233 "scanner.l"
 {
 	return parentesisCierreTK;
 }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 236 "scannerVFinal.l"
+#line 236 "scanner.l"
 {
 	return operadoresComparacionTK;
 	printf("%s\n", yytext);
@@ -1747,84 +1747,84 @@ YY_RULE_SETUP
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 241 "scannerVFinal.l"
+#line 241 "scanner.l"
 {
 	return signoIgualTK;
 }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 244 "scannerVFinal.l"
+#line 244 "scanner.l"
 {
 	return igualAsignacionTK;
 }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 247 "scannerVFinal.l"
+#line 247 "scanner.l"
 {
 	return puntoYComaTK;
 }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 250 "scannerVFinal.l"
+#line 250 "scanner.l"
 {
 	return separadorTK;
 }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 253 "scannerVFinal.l"
+#line 253 "scanner.l"
 {
 	return puntoTK;
 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 256 "scannerVFinal.l"
+#line 256 "scanner.l"
 {
 	return subrangoTK;
 }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 259 "scannerVFinal.l"
+#line 259 "scanner.l"
 {
 	return definicionTipoVariableTK;
 }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 262 "scannerVFinal.l"
+#line 262 "scanner.l"
 {
 	return entoncesTK;
 }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 265 "scannerVFinal.l"
+#line 265 "scanner.l"
 {
 	return siNoSiTK;
 }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 268 "scannerVFinal.l"
+#line 268 "scanner.l"
 {
 	return inicioArrayTK;
 }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 271 "scannerVFinal.l"
+#line 271 "scanner.l"
 {
 	return finalArrayTK;
 }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 274 "scannerVFinal.l"
+#line 274 "scanner.l"
 {
 	yylval.literal.tipoDelValor = BOOLEANO;
 	yylval.literal.valor.valorBooleano = FALSO;
@@ -1833,7 +1833,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 279 "scannerVFinal.l"
+#line 279 "scanner.l"
 {
 	yylval.literal.tipoDelValor = BOOLEANO;
 	yylval.literal.valor.valorBooleano = VERDADERO;
@@ -1842,7 +1842,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 287 "scannerVFinal.l"
+#line 287 "scanner.l"
 {
 	return identificadorBooleanoTK;
 	printf("%s\n",  yytext);
@@ -1850,7 +1850,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 291 "scannerVFinal.l"
+#line 291 "scanner.l"
 {
 	if ((yylval.cadena = strdup(yytext)) == NULL )
 		errorEnScanner("No hay memoria para strdup() al leer %s\n", yytext);
@@ -1860,7 +1860,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 297 "scannerVFinal.l"
+#line 297 "scanner.l"
 {
 	yylval.literal.tipoDelValor = CARACTER;
 	yylval.literal.valor.valorCaracter = yytext[1];
@@ -1869,7 +1869,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 302 "scannerVFinal.l"
+#line 302 "scanner.l"
 {
 	yylval.literal.tipoDelValor = CADENA;
 
@@ -1881,7 +1881,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 310 "scannerVFinal.l"
+#line 310 "scanner.l"
 {
 	yylval.literal.tipoDelValor = ENTERO;
 	yylval.literal.valor.valorEntero = atoi(yytext);
@@ -1891,7 +1891,7 @@ YY_RULE_SETUP
 case 61:
 /* rule 61 can match eol */
 YY_RULE_SETUP
-#line 315 "scannerVFinal.l"
+#line 315 "scanner.l"
 {
 	return precondicionTK;
 }
@@ -1899,21 +1899,21 @@ YY_RULE_SETUP
 case 62:
 /* rule 62 can match eol */
 YY_RULE_SETUP
-#line 318 "scannerVFinal.l"
+#line 318 "scanner.l"
 {
 	return postCondicionTK;
 }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 321 "scannerVFinal.l"
+#line 321 "scanner.l"
 {
 	return comentarioTK;
 }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 325 "scannerVFinal.l"
+#line 325 "scanner.l"
 {
 	yylval.literal.tipoDelValor = REAL;
 	yylval.literal.valor.valorReal = atof(yytext);
@@ -1922,7 +1922,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 330 "scannerVFinal.l"
+#line 330 "scanner.l"
 {
 	char * cadena;
 	yylval.literal.tipoDelValor = REAL;
@@ -1937,7 +1937,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 341 "scannerVFinal.l"
+#line 341 "scanner.l"
 {
 	yylval.cadena = strdup(yytext);
 	return nombreConstanteTK;
@@ -1945,13 +1945,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 347 "scannerVFinal.l"
+#line 347 "scanner.l"
 { //Permite que el resto de caracteres no hagan echo
 }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 351 "scannerVFinal.l"
+#line 351 "scanner.l"
 ECHO;
 	YY_BREAK
 #line 1958 "lex.yy.c"
@@ -2959,7 +2959,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 351 "scannerVFinal.l"
+#line 351 "scanner.l"
 
 
  //PARTE 3: CODIGO ADICIONAL

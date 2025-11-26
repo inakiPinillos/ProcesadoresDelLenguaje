@@ -8,8 +8,12 @@ typedef enum nombreDeOperador {
 	RESTA_REAL,
 	MULT_ENTERO,
     MULT_REAL,
-    DIV_ENTERO,
-    DIV_REAL,
+    DIV_ENTERA_ENTEROS,
+    DIV_ENTERA_REALES,
+    DIV_REAL_ENTEROS,
+    DIV_REAL_REALES,
+    MOD_REAL,
+    MOD_ENTERO,
     ENTERO_TO_REAL,
     REAL_TO_ENTERO
 } NombreDeOperador;

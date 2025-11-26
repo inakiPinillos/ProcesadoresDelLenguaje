@@ -5,8 +5,8 @@ compilador: parser.tab.c lex.yy.o literal.o literal.h nombresDeTipos.o tablaDeCo
 parser.tab.c parser.tah.h: parser.y literal.h nombresDeTipos.h tablaDeConstantes.h
 	bison -d -v -t parser.y
 
-lex.yy.o: scannerVFinal.l parser.tab.h literal.h nombresDeTipos.h tablaDeConstantes.h
-	flex scannerVFinal.l
+lex.yy.o: scanner.l parser.tab.h literal.h nombresDeTipos.h tablaDeConstantes.h
+	flex scanner.l
 	gcc -c lex.yy.c
 
 literal.o: literal.c
@@ -24,8 +24,8 @@ tablaDeConstantes.o: tablaDeConstantes.c
 tablaDeCuadruplas.o: tablaDeCuadruplas.c
 	gcc -c tablaDeCuadruplas.c
 
-scanner: scannerVFinal.l
-	flex scannerVFinal.l
+scanner: scanner.l
+	flex scanner.l
 	gcc lex.yy.c -lfl
 	mv a.out scanner
 

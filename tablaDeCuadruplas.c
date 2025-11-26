@@ -6,15 +6,19 @@
 #include <stdlib.h>
 
 const char* nombreDeOperadorToString(NombreDeOperador tipo) {
-    switch (tipo) {
+    switch (tipo) {	
         case SUMA_ENTERO: return "Suma de enteros";
         case SUMA_REAL: return "Suma de reales";
         case RESTA_ENTERO: return "Resta de enteros";
         case RESTA_REAL: return "Resta de reales";
         case MULT_ENTERO: return "Multiplicación de enteros";
         case MULT_REAL: return "Multiplicación de reales";
-        case DIV_ENTERO: return "División de enteros";
-        case DIV_REAL: return "División de reales";
+        case DIV_ENTERA_ENTEROS: return "División entera de enteros";
+        case DIV_ENTERA_REALES: return "División entera de reales";
+        case DIV_REAL_ENTEROS: return "División real de enteros";
+        case DIV_REAL_REALES: return "División real de reales";
+        case MOD_REAL: return "Módulo de enteros";
+        case MOD_ENTERO: return "Módulo de reales";
         case ENTERO_TO_REAL: return "Tipo de entero a real";
         case REAL_TO_ENTERO: return "Tipo de real a entero";
 

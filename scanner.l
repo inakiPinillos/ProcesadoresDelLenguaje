@@ -212,8 +212,8 @@ literalRealOP	{literalEnteroOP}[rR]
 
 
 {operadoresDivMultOP}	{
+	yylval.operador = yytext;
 	return operadoresMultiplicacionODivisionTK;
-	printf("%s\n", yytext);
 }
 {noOP}	{
 	return noTK;
@@ -223,7 +223,7 @@ literalRealOP	{literalEnteroOP}[rR]
 	printf("%c\n", yytext[0]);
 }
 {operadoresSumaRestaOP}	{
-	yylval.operador = yytext[0];
+	yylval.operador = yytext;
 	return operadoresSumaORestaTK;
 }
 {parentesisAperturaOP}	{

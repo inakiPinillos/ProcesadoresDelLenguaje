@@ -14,6 +14,7 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include "nombresDeTipos.h"
+	#include "nombreDeTiposCuadruplas.h"
 	#include "literal.h"
 	#include "tablaDeConstantes.h"
 	#include "tablaDeSimbolos.h"
@@ -134,7 +135,7 @@
 
 %union{
 	char* cadena;
-	char operador;
+	char* operador;
 	LiteralT literal;
 	int entero;
 	NombreDeTipoT tipo;
@@ -353,19 +354,57 @@ exp_a:
 	exp_a operadoresSumaORestaTK exp_a {
 		infoVariable T = agregarTemporal();
 		$$.place = obtenerPos(T.nombre);
-		if($2 == '+')
+		if (strstr($2, "+") != NULL)
 		{
 			if ($1.type == ENTERO && $3.type == ENTERO) {
 				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
 				gen($1, $3, SUMA_ENTERO, T);
 				$$.type = ENTERO;
 			}
-		}else{
+		} else if (strstr($2, "-") != NULL) {
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
+				gen($1, $3, RESTA_ENTERO, T);
+				$$.type = ENTERO;
+			}
 		}
 
 	}
 	| exp_a operadoresMultiplicacionODivisionTK exp_a {
-
+		infoVariable T = agregarTemporal();
+		$$.place = obtenerPos(T.nombre);
+		if (strstr($2, "*") != NULL)
+		{
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
+				gen($1, $3, MULT_ENTERO, T);
+				$$.type = ENTERO;
+			}
+		} else if (strstr($2, "/") != NULL) {
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
+				gen($1, $3, DIV_REAL_ENTEROS, T);
+				$$.type = ENTERO;
+			}
+		} else if (strstr($2, "div") != NULL) {
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
+				gen($1, $3, DIV_ENTERA_ENTEROS, T);
+				$$.type = ENTERO;
+			}
+		} else if (strstr($2, "mod") != NULL) {
+			if ($1.type == ENTERO && $3.type == ENTERO) {
+				actualizarTipoTemporal(T, ENTERO);
+				T.tipo = ENTERO;
+				gen($1, $3, MOD_ENTERO, T);
+				$$.type = ENTERO;
+			}
+		}
 	}
 	| parentesisAperturaTK exp_a parentesisCierreTK {
 
