@@ -32,7 +32,7 @@
 	int pos = 0; 
 	infoVariable tablaDeSimbolos[MAX_IDS]; 
 
-	int posCuadruplas = 0; 
+	int nextquad = 0; 
 	cuadrupla tablaDeCuadruplas[MAX_CUADRUPLAS]; 
 
 %}

@@ -32,17 +32,17 @@ const char* nombreDeOperadorToString(NombreDeOperador tipo) {
 }    
 
 void gen(tipoOperando oper1, tipoOperando oper2, NombreDeOperador oper, infoVariable res) {
-    tablaDeCuadruplas[posCuadruplas].operando1 = oper1;
-    tablaDeCuadruplas[posCuadruplas].operando2 = oper2;
-    tablaDeCuadruplas[posCuadruplas].operador = oper;
-    tablaDeCuadruplas[posCuadruplas].resultado = res;
-    posCuadruplas++;
+    tablaDeCuadruplas[nextquad].operando1 = oper1;
+    tablaDeCuadruplas[nextquad].operando2 = oper2;
+    tablaDeCuadruplas[nextquad].operador = oper;
+    tablaDeCuadruplas[nextquad].resultado = res;
+    nextquad++;
 }
 
 
 void imprimirTablaCuadruplas(){
     printf("////////TABLA CUADRUPLAS////////\n");
-    for (int i = 0; i < posCuadruplas; i++){
+    for (int i = 0; i < nextquad; i++){
         printf("Operando 1, pos:%d y tipo:%s, operando 2: pos:%d y tipo:%s, operador: %s y resultado nombre:%s y tipo: %s\n",
             tablaDeCuadruplas[i].operando1.place, nombreDeTipoToString(tablaDeCuadruplas[i].operando1.type),
             tablaDeCuadruplas[i].operando2.place, nombreDeTipoToString(tablaDeCuadruplas[i].operando2.type),

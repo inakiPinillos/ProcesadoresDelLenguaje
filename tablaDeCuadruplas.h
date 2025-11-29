@@ -18,7 +18,7 @@ typedef struct cuadrupla {
 
 
 extern cuadrupla tablaDeCuadruplas[]; 
-extern int posCuadruplas; 
+extern int nextquad; 
 
 void gen(tipoOperando, tipoOperando, NombreDeOperador, infoVariable);
 void imprimirTablaCuadruplas();
