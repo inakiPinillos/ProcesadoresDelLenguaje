@@ -553,7 +553,6 @@ exp_b:
 		actualizarTipoTemporal(T, BOOLEANO);
 		T.tipo = BOOLEANO;
 		$$.type = BOOLEANO;
-		printf("Valor: %s\n", $2);
 		if (strstr($2, "y") != NULL) {
 			gen($1, $3, Y, T);
 		} else if (strstr($2, "o") != NULL) {
@@ -582,14 +581,14 @@ exp_b:
 		T.tipo = BOOLEANO;
 		$$.type = BOOLEANO;
 		printf("Valor: %s\n", $2);
-		if (strstr($2, "<") != NULL) {
-			gen($1, $3, MENOR, T);
-		} else if (strstr($2, "<=") != NULL) {
+		if (strstr($2, "<=") != NULL) {
 			gen($1, $3, MENOR_O_IGUAL, T);
-		} else if (strstr($2, ">") != NULL) {
-			gen($1, $3, MAYOR, T);
+		} else if (strstr($2, "<") != NULL) {
+			gen($1, $3, MENOR, T);
 		} else if (strstr($2, ">=") != NULL) {
 			gen($1, $3, MAYOR_O_IGUAL, T);
+		} else if (strstr($2, ">") != NULL) {
+			gen($1, $3, MAYOR, T);
 		}
 	}
 	| parentesisAperturaTK exp_b parentesisCierreTK {
@@ -785,6 +784,7 @@ int main(int argc, char **argv){
 	imprimeTablaDeConstantes(tc);
 	imprimirTabla();
 	imprimirTablaCuadruplas();
+	imprimirTablaCuadruplasBonito();
 }
 
 

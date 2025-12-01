@@ -5,7 +5,7 @@ algoritmo intercambio;
 	var
 		b, b1, b2: booleano;
 	fvar;
-	b:= b y b2;
+	b:= b >= b2;
 	b:= b o b2;
 	b:= no b2
 {Post: c=A AND a = B}

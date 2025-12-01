@@ -233,9 +233,8 @@ literalRealOP	{literalEnteroOP}[rR]
 	return parentesisCierreTK;
 }
 {operadoresComparacionOP}	{
+	yylval.operador = yytext;
 	return operadoresComparacionTK;
-	printf("%s\n", yytext);
-
 }
 {signoIgualOP}	{
 	return signoIgualTK;

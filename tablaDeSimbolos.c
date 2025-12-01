@@ -51,8 +51,10 @@ int obtenerPos(char *nombre) {
 }
 
 void imprimirTabla(){
-    printf("////////TABLA////////\n");
+    printf("--------------TABLA DE SIMBOLOS--------------\n");
+    printf("| %-5s | %-15s | %-15s |\n", "POS", "NOMBRE", "TIPO");
     for (int i = 0; i < pos; i++){
-        printf("Nombre: %s, tipo: %s\n", tablaDeSimbolos[i].nombre, nombreDeTipoToString(tablaDeSimbolos[i].tipo));
+        printf("| %-5d | %-15s | %-15s |\n", i, tablaDeSimbolos[i].nombre, nombreDeTipoToString(tablaDeSimbolos[i].tipo));
     }
+    printf("\n");
 }

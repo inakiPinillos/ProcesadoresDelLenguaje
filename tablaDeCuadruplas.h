@@ -22,4 +22,5 @@ extern int nextquad;
 
 void gen(tipoOperando, tipoOperando, NombreDeOperador, infoVariable);
 void imprimirTablaCuadruplas();
+void imprimirTablaCuadruplasBonito();
 #endif

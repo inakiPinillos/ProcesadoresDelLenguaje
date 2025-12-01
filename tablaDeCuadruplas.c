@@ -50,4 +50,20 @@ void imprimirTablaCuadruplas(){
             tablaDeCuadruplas[i].resultado.nombre, nombreDeTipoToString(tablaDeCuadruplas[i].resultado.tipo)
         );
     }
+    printf("\n");
+}
+
+void imprimirTablaCuadruplasBonito(){
+    printf("-----------------------------TABLA CUADRUPLAS----------------------------\n");
+    printf("| %-15s | %-15s | %-15s | %-15s |\n", "OPERADOR", "OPERANDO1", "OPERANDO2", "RESULTADO");
+    
+    for (int i = 0; i < nextquad; i++){
+        printf("| %-15s | %-15s | %-15s | %-15s |\n",
+            nombreDeOperadorToString(tablaDeCuadruplas[i].operador),
+            tablaDeSimbolos[tablaDeCuadruplas[i].operando1.place].nombre,
+            tablaDeSimbolos[tablaDeCuadruplas[i].operando2.place].nombre,
+            tablaDeCuadruplas[i].resultado.nombre
+        );
+    }
+    printf("\n");
 }
