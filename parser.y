@@ -679,7 +679,9 @@ asignacion:
 		}
 	}
 	| 	operando_b igualAsignacionTK exp_b {
-
+		tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+		infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
+		gen($3, opNulo, ASIGNACION, operandoNuevo);
 	}
 	;
 alternativa:
