@@ -20,7 +20,9 @@ const char* nombreDeOperadorToString(NombreDeOperador tipo) {
         case MOD_ENTERO: return "Módulo de enteros";
         case ENTERO_TO_REAL: return "Tipo de entero a real";
         case REAL_TO_ENTERO: return "Tipo de real a entero";
-        case ASIGNACION: return "Asignacion";
+        case ASIGNACION_REAL: return "Asignacion de reales";
+        case ASIGNACION_ENTERA: return "Asignacion de enteros";
+        case ASIGNACION_BOOLEANA: return "Asignacion de booleanos";
         case Y: return "Y";
         case O: return "O";
         case NO: return "No";
@@ -55,10 +57,10 @@ void imprimirTablaCuadruplas(){
 
 void imprimirTablaCuadruplasBonito(){
     printf("-----------------------------TABLA CUADRUPLAS----------------------------\n");
-    printf("| %-15s | %-15s | %-15s | %-15s |\n", "OPERADOR", "OPERANDO1", "OPERANDO2", "RESULTADO");
+    printf("| %-25s | %-25s | %-25s | %-25s |\n", "OPERADOR", "OPERANDO1", "OPERANDO2", "RESULTADO");
     
     for (int i = 0; i < nextquad; i++){
-        printf("| %-15s | %-15s | %-15s | %-15s |\n",
+        printf("| %-25s | %-25s | %-25s | %-25s |\n",
             nombreDeOperadorToString(tablaDeCuadruplas[i].operador),
             tablaDeSimbolos[tablaDeCuadruplas[i].operando1.place].nombre,
             tablaDeSimbolos[tablaDeCuadruplas[i].operando2.place].nombre,

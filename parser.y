@@ -649,7 +649,11 @@ asignacion:
 		if ($1.type == $3.type) {
 			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
 			infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
-			gen($3, opNulo, ASIGNACION, operandoNuevo);
+			if ($1.type == REAL) {
+				gen($3, opNulo, ASIGNACION_REAL, operandoNuevo);
+			} else {
+				gen($3, opNulo, ASIGNACION_ENTERA, operandoNuevo);
+			}
 		} else if ($1.type == REAL && $3.type == ENTERO) {
 			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
 
@@ -662,7 +666,7 @@ asignacion:
 
 			tipoOperando operandoNuevo2 = { .place = obtenerPos(T2.nombre), .type = T2.tipo};
 
-			gen(operandoNuevo2, opNulo, ASIGNACION, operandoNuevo);
+			gen(operandoNuevo2, opNulo, ASIGNACION_REAL, operandoNuevo);
 		} else if ($1.type == ENTERO && $3.type == REAL ) {
 			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
 
@@ -675,13 +679,13 @@ asignacion:
 
 			tipoOperando operandoNuevo2 = { .place = obtenerPos(T2.nombre), .type = T2.tipo};
 
-			gen(operandoNuevo2, opNulo, ASIGNACION, operandoNuevo);
+			gen(operandoNuevo2, opNulo, ASIGNACION_ENTERA, operandoNuevo);
 		}
 	}
 	| 	operando_b igualAsignacionTK exp_b {
 		tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
 		infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
-		gen($3, opNulo, ASIGNACION, operandoNuevo);
+		gen($3, opNulo, ASIGNACION_BOOLEANA, operandoNuevo);
 	}
 	;
 alternativa:
