@@ -3,15 +3,16 @@ algoritmo intercambio;
 	sal a, c: entero;
 {Prec: a= A AND c = B}
 	var
-		b, b1, b2: booleano;
-		d: real;
+		a1, a2: entero;
+		c1, c2: real;
+
 	fvar;
-	a:= c;
-	d:= a;
-	d:= a;
-	b:= b >= b2;
-	b:= b o b2;
-	b:= no b2
+
+	a1:= a1 mod a2;
+	a1:= a1 mod c1;
+	c1:= a1 mod c1;
+	a1:= c1 mod c2;
+	c1:= c1 mod c2
 
 {Post: c=A AND a = B}
 falgoritmo.

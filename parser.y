@@ -458,17 +458,17 @@ exp_a:
 
 			}
 			else if($1.type == REAL && $3.type == ENTERO){
-				actualizarTipoTemporal(T, ENTERO);
-				T.tipo = ENTERO;
+				actualizarTipoTemporal(T, REAL);
+				T.tipo = REAL;
 				infoVariable T3 = agregarTemporal();
-				actualizarTipoTemporal(T3, ENTERO);
-				T3.tipo = ENTERO;
+				actualizarTipoTemporal(T3, REAL);
+				T3.tipo = REAL;
 				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO };
-				gen($1, opNulo, REAL_TO_ENTERO, T3);
+				gen($3, opNulo, ENTERO_TO_REAL, T3);
 
 				tipoOperando operandoNuevo = { .place = obtenerPos(T3.nombre), .type = T3.tipo };
-				gen(operandoNuevo, $3, REAL_TO_ENTERO, T);
-				$$.type = ENTERO;
+				gen(operandoNuevo, $3, MULT_REAL, T);
+				$$.type = REAL;
 
 			}
 			else if ($1.type == REAL && $3.type == REAL) {
@@ -481,8 +481,25 @@ exp_a:
 			actualizarTipoTemporal(T, REAL);
 			T.tipo = REAL;
 			$$.type = REAL;
-			if ($1.type == ENTERO && $3.type == ENTERO) {
-				gen($1, $3, DIV_REAL_ENTEROS, T);
+			if ($1.type == ENTERO && $3.type == ENTERO) 
+			{
+				infoVariable T2 = agregarTemporal();
+				actualizarTipoTemporal(T2, REAL);
+				T2.tipo = REAL;
+
+				tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
+				gen($1, opNulo, ENTERO_TO_REAL, T2);
+				tipoOperando operandoNuevo = { .place = obtenerPos(T2.nombre), .type = T2.tipo };
+
+				infoVariable T3 = agregarTemporal();
+				actualizarTipoTemporal(T3, REAL);
+				T3.tipo = REAL;
+
+				gen($3, opNulo, ENTERO_TO_REAL, T3);
+
+				tipoOperando operandoNuevo2 = { .place = obtenerPos(T3.nombre), .type = T3.tipo };
+
+				gen(operandoNuevo, operandoNuevo2, DIV_REAL_REALES, T);
 			} else if ($1.type == ENTERO && $3.type == REAL) {
 				infoVariable T2 = agregarTemporal();
 				actualizarTipoTemporal(T2, REAL);
@@ -516,7 +533,7 @@ exp_a:
 				gen($1, $3, DIV_ENTERA_ENTEROS, T);
 				$$.type = ENTERO;
 			} else {
-				yyerror("En mod solo se pueden dividir enteros\n");
+				yyerror("En div solo se pueden dividir enteros\n");
 			}
 		} else if (strstr($2, "mod") != NULL) {
 			if ($1.type == ENTERO && $3.type == ENTERO) {
@@ -668,18 +685,7 @@ asignacion:
 
 			gen(operandoNuevo2, opNulo, ASIGNACION_REAL, operandoNuevo);
 		} else if ($1.type == ENTERO && $3.type == REAL ) {
-			tipoOperando opNulo = { .place = -1, .type = TIPO_NULO }; 
-
-			infoVariable T2 = agregarTemporal();
-			actualizarTipoTemporal(T2, ENTERO);
-			T2.tipo = ENTERO;
-
-			gen($3, opNulo, REAL_TO_ENTERO, T2);
-			infoVariable operandoNuevo = { .nombre = tablaDeSimbolos[$1.place].nombre, .tipo = $1.type }; 
-
-			tipoOperando operandoNuevo2 = { .place = obtenerPos(T2.nombre), .type = T2.tipo};
-
-			gen(operandoNuevo2, opNulo, ASIGNACION_ENTERA, operandoNuevo);
+			yyerror("No puedes asignar un número real a uno entero\n");
 		}
 	}
 	| 	operando_b igualAsignacionTK exp_b {
@@ -778,18 +784,15 @@ l_ll:
 %%
 int main(int argc, char **argv){
 	#if defined YYDEBUG
-	yydebug=1;
+	yydebug=0;
 	#endif
 	++argv, --argc;
 	if (argc > 0)
 		yyin = fopen(argv[0], "r");
 	else
 		yyin = stdin;
-	tc = nuevaTablaDeConstantes();
 	yyparse();
-	imprimeTablaDeConstantes(tc);
 	imprimirTabla();
-	imprimirTablaCuadruplas();
 	imprimirTablaCuadruplasBonito();
 }
 
