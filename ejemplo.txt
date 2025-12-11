@@ -2,17 +2,31 @@ algoritmo intercambio;
 	ent a, c: entero;
 	sal a, c: entero;
 {Prec: a= A AND c = B}
-	var
-		a1, a2: entero;
-		c1, c2: real;
 
+	var
+		aux, aux1, aux2: entero;
+		aux3, aux4, aux5: real;
+		b, b1, b2: booleano;
 	fvar;
 
-	a1:= a1 mod a2;
-	a1:= a1 mod c1;
-	c1:= a1 mod c1;
-	a1:= c1 mod c2;
-	c1:= c1 mod c2
+	aux:= aux1 + aux2;
+	aux:= aux1 + aux3;
+	aux:= aux1 - aux2;
+	aux:= aux1 - aux3;
+	aux:= aux1 * aux2;
+	aux:= aux1 * aux3;
+
+
+	aux:= aux1 div aux2;
+	aux:= aux4 div aux5;
+	aux:= aux1 mod aux2;
+	aux:= aux4 mod aux5;
+	aux:= aux1 / aux3;
+
+	b:= b1 y b2;
+	b:= b2 >= b1;
+	b:= b1 o b2;
+	b:= no b2
 
 {Post: c=A AND a = B}
 falgoritmo.
