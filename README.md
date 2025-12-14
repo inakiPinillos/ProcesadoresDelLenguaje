@@ -1,6 +1,6 @@
 # Procesadores del lenguaje
 
-Hemos realizado la **declaración de variables, expresiones aritméticas y las expresiones booleanas** (ambas con las asignaciones). Si que es verdad que no lo hemos hecho de la manera necesaria para el control de flujo.
+Hemos realizado la **declaración de variables, expresiones aritméticas y las expresiones booleanas** (ambas con las asignaciones).
 
 Nuestra gramática no ha sufrido grandes modificaciones sobre la que se nos daba para implementar, para diferenciar las variables booleanas de las demás utilizamos **Fortran**, indicando que todas las variables booleanas tienen que comenzar por b.
 
