@@ -9,19 +9,14 @@ algoritmo intercambio;
 		b, b1, b2: booleano;
 	fvar;
 
-	aux:= aux1 + aux2;
-	aux:= aux1 + aux3;
+	aux4:= aux1 + aux3;
 	aux:= aux1 - aux2;
-	aux:= aux1 - aux3;
-	aux:= aux1 * aux2;
 	aux:= aux1 * aux3;
-
 
 	aux:= aux1 div aux2;
 	aux:= aux4 div aux5;
 	aux:= aux1 mod aux2;
-	aux:= aux4 mod aux5;
-	aux:= aux1 / aux3;
+	aux4:= aux1 / aux3;
 
 	b:= b1 y b2;
 	b:= b2 >= b1;

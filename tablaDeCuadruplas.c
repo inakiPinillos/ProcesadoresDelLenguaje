@@ -11,13 +11,13 @@ const char* nombreDeOperadorToString(NombreDeOperador tipo) {
         case SUMA_REAL: return "Suma de reales";
         case RESTA_ENTERO: return "Resta de enteros";
         case RESTA_REAL: return "Resta de reales";
-        case MULT_ENTERO: return "Multiplicación de enteros";
-        case MULT_REAL: return "Multiplicación de reales";
-        case DIV_ENTERA_ENTEROS: return "División entera de enteros";
-        case DIV_ENTERA_REALES: return "División entera de reales";
-        case DIV_REAL_ENTEROS: return "División real de enteros";
-        case DIV_REAL_REALES: return "División real de reales";
-        case MOD_ENTERO: return "Módulo de enteros";
+        case MULT_ENTERO: return "Multiplicacion de enteros";
+        case MULT_REAL: return "Multiplicacion de reales";
+        case DIV_ENTERA_ENTEROS: return "Division entera de enteros";
+        case DIV_ENTERA_REALES: return "Division entera de reales";
+        case DIV_REAL_ENTEROS: return "Division real de enteros";
+        case DIV_REAL_REALES: return "Division real de reales";
+        case MOD_ENTERO: return "Modulo de enteros";
         case ENTERO_TO_REAL: return "Tipo de entero a real";
         case REAL_TO_ENTERO: return "Tipo de real a entero";
         case ASIGNACION_REAL: return "Asignacion de reales";
@@ -56,11 +56,11 @@ void imprimirTablaCuadruplas(){
 }
 
 void imprimirTablaCuadruplasBonito(){
-    printf("-----------------------------TABLA CUADRUPLAS----------------------------\n");
-    printf("| %-25s | %-25s | %-25s | %-25s |\n", "OPERADOR", "OPERANDO1", "OPERANDO2", "RESULTADO");
+    printf("----------------------------------------------------------TABLA CUADRUPLAS-----------------------------------------------------------\n");
+    printf("| %-30s | %-30s | %-30s | %-30s |\n", "OPERADOR", "OPERANDO1", "OPERANDO2", "RESULTADO");
     
     for (int i = 0; i < nextquad; i++){
-        printf("| %-25s | %-25s | %-25s | %-25s |\n",
+        printf("| %-30s | %-30s | %-30s | %-30s |\n",
             nombreDeOperadorToString(tablaDeCuadruplas[i].operador),
             tablaDeSimbolos[tablaDeCuadruplas[i].operando1.place].nombre,
             tablaDeSimbolos[tablaDeCuadruplas[i].operando2.place].nombre,

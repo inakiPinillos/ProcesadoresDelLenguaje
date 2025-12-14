@@ -533,7 +533,7 @@ exp_a:
 				gen($1, $3, DIV_ENTERA_ENTEROS, T);
 				$$.type = ENTERO;
 			} else {
-				yyerror("En div solo se pueden dividir enteros\n");
+				yyerror("En div solo se pueden dividir enteros");
 			}
 		} else if (strstr($2, "mod") != NULL) {
 			if ($1.type == ENTERO && $3.type == ENTERO) {
@@ -542,7 +542,7 @@ exp_a:
 				gen($1, $3, MOD_ENTERO, T);
 				$$.type = ENTERO;
 			} else {
-				yyerror("En mod solo se pueden dividir enteros\n");
+				yyerror("En mod solo se pueden dividir enteros");
 			}
 		}
 	}
@@ -597,7 +597,6 @@ exp_b:
 		actualizarTipoTemporal(T, BOOLEANO);
 		T.tipo = BOOLEANO;
 		$$.type = BOOLEANO;
-		printf("Valor: %s\n", $2);
 		if (strstr($2, "<=") != NULL) {
 			gen($1, $3, MENOR_O_IGUAL, T);
 		} else if (strstr($2, "<") != NULL) {
@@ -685,7 +684,7 @@ asignacion:
 
 			gen(operandoNuevo2, opNulo, ASIGNACION_REAL, operandoNuevo);
 		} else if ($1.type == ENTERO && $3.type == REAL ) {
-			yyerror("No puedes asignar un número real a uno entero\n");
+			yyerror("No puedes asignar un número real a uno entero");
 		}
 	}
 	| 	operando_b igualAsignacionTK exp_b {
